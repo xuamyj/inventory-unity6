@@ -1,0 +1,21 @@
+﻿title: Fortune
+---
+I: Hello there, wandering traveler!
+
+A: Hello.
+
+I: Surely you would like your fortune told for the reasonable price of 3 silver coins?
+
+A: Hmm...
+
+Pay 3 silver coins for your fortune?
+  -> Yes
+    A: Sure, I'll hear my fortune.
+    I: Excellent!
+    I: Allow me to peer into my crystal ball...
+  -> No
+    A: No, not today.
+    I: Very well, as you wish.
+ 
+That's it for now!
+===

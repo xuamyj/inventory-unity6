@@ -1,0 +1,9 @@
+import that thing
+player judder
+
+--
+
+learn how to make bars: water, energy
+money icon
+make the water shake a little bit when you use it
+font background transparent not

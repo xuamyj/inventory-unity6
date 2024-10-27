@@ -71,6 +71,8 @@ public class PlayerController : MonoBehaviour
         // transform.position = position;
         rigidbody2d.MovePosition(position);
 
+        // Remember to (Hierarchy) Player > Rigidbody 2D > Interpolate set to "Interpolate" instead of "None" to fix judder
+
 
     }
 }

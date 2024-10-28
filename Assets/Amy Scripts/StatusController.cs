@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Yarn.Unity;
 
 public class StatusController : MonoBehaviour
 {
@@ -62,6 +63,16 @@ public class StatusController : MonoBehaviour
     [SerializeField] private LittleStatus littleStatus; // only relevant if BigStatus == InWorld
     private InventoryType currInventoryType; // only relevant if LittleStatus = Inventory_InWorld
 
+    /* ---- UI: DRAGGED ---- */
+    public GameObject gameSavedScreen;
+    public GameObject calendarScreen;
+    public GameObject inWorldScreen;
+    public GameObject storageInventoryUI;
+    public GameObject displayInventoryUI;
+    public GameObject sellingInventoryUI;
+    /* ---- YARN: DRAGGED ---- */
+    public DialogueRunner yarnRunner;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -81,7 +92,7 @@ public class StatusController : MonoBehaviour
         currInventoryType = InventoryType.Storage; // we'll say this one is default for now
 
         /* ---- GAME START ---- */
-        ToGameSavedScreen();
+        BigToGameSavedScreen();
     }
 
     /* ---- PUBLIC STATUS FUNCTIONS ---- */
@@ -90,14 +101,7 @@ public class StatusController : MonoBehaviour
         return (bigStatus, littleStatus);
     }
 
-    /* ---- UI FUNCTIONS ---- */
-    public GameObject gameSavedScreen;
-    public GameObject calendarScreen;
-    public GameObject inWorldScreen;
-    public GameObject storageInventoryUI;
-    public GameObject displayInventoryUI;
-    public GameObject sellingInventoryUI;
-
+    // private helper function
     private void ClearAllUI()
     {
         gameSavedScreen.gameObject.SetActive(false);
@@ -108,7 +112,7 @@ public class StatusController : MonoBehaviour
         sellingInventoryUI.gameObject.SetActive(false);
     }
 
-    public void ToGameSavedScreen()
+    public void BigToGameSavedScreen()
     {
         // Status
         bigStatus = BigStatus.GameSaved;
@@ -118,7 +122,7 @@ public class StatusController : MonoBehaviour
         ClearAllUI();
         gameSavedScreen.gameObject.SetActive(true);
     }
-    public void ToCalendarScreen()
+    public void BigToCalendarScreen()
     {
         // TODO: update day to next day! (also involves moving red box, updating weekday/month/date, resetting water and energy)
 
@@ -130,7 +134,7 @@ public class StatusController : MonoBehaviour
         ClearAllUI();
         calendarScreen.gameObject.SetActive(true);
     }
-    public void ToInWorldScreen()
+    public void BigToInWorldScreen()
     {
         // Status
         bigStatus = BigStatus.InWorld;
@@ -141,33 +145,8 @@ public class StatusController : MonoBehaviour
         inWorldScreen.gameObject.SetActive(true);
     }
 
-    public void TempButtonCloseInventory() // TODO: use the other function when.. ? check how stardew does it
-    {
-        if (bigStatus == BigStatus.InWorld && littleStatus == LittleStatus.Inventory_InWorld) // close inventory
-        {
-            // Status
-            littleStatus = LittleStatus.Default_InWorld;
-
-            // UI
-            if (currInventoryType == InventoryType.Storage)
-            {
-                storageInventoryUI.gameObject.SetActive(false);
-            }
-            else if (currInventoryType == InventoryType.Display)
-            {
-                displayInventoryUI.gameObject.SetActive(false);
-            }
-            else if (currInventoryType == InventoryType.Selling)
-            {
-                sellingInventoryUI.gameObject.SetActive(false);
-            }
-            else
-            {
-                UnityEngine.Debug.Log("ERROR: StatusController.cs > TempButtonCloseInventory > close inventory > something wrong with InventoryType");
-            }
-        }
-    }
-    public void ToggleInventory(InventoryType type)
+    /* ---- INVENTORY ---- */
+    public void OpenInventory(InventoryType type)
     {
         if (bigStatus == BigStatus.InWorld && littleStatus == LittleStatus.Default_InWorld) // open inventory
         {
@@ -190,10 +169,17 @@ public class StatusController : MonoBehaviour
             }
             else
             {
-                UnityEngine.Debug.Log("ERROR: StatusController.cs > ToggleInventory > open inventory > something wrong with InventoryType");
+                UnityEngine.Debug.Log("ERROR: StatusController.cs > OpenInventory > something wrong with InventoryType");
             }
         }
-        else if (bigStatus == BigStatus.InWorld && littleStatus == LittleStatus.Inventory_InWorld) // close inventory
+        else
+        {
+            UnityEngine.Debug.Log("ERROR: StatusController.cs > OpenInventory > something wrong with BigStatus or LittleStatus");
+        }
+    }
+    public void CloseInventory()
+    {
+        if (bigStatus == BigStatus.InWorld && littleStatus == LittleStatus.Inventory_InWorld) // close inventory
         {
             // Status
             littleStatus = LittleStatus.Default_InWorld;
@@ -213,16 +199,48 @@ public class StatusController : MonoBehaviour
             }
             else
             {
-                UnityEngine.Debug.Log("ERROR: StatusController.cs > ToggleInventory > close inventory > something wrong with InventoryType");
+                UnityEngine.Debug.Log("ERROR: StatusController.cs > CloseInventory > something wrong with InventoryType");
             }
         }
         else
         {
-            UnityEngine.Debug.Log("ERROR: StatusController.cs > ToggleInventory > something wrong with BigStatus or LittleStatus");
+            UnityEngine.Debug.Log("ERROR: StatusController.cs > CloseInventory > something wrong with BigStatus or LittleStatus");
         }
     }
 
-    // next funciton will toggle dialogue
+    /* ---- DIALOGUE ---- */
+    public void EnterDialogue(string yarnNodeName)
+    {
+        if (bigStatus == BigStatus.InWorld && littleStatus == LittleStatus.Default_InWorld) // enter dialogue
+        {
+            // Status
+            littleStatus = LittleStatus.Dialogue_InWorld;
+
+            // Yarn & UI
+            ClearAllUI();
+            yarnRunner.StartDialogue(yarnNodeName);
+        }
+        else
+        {
+            UnityEngine.Debug.Log("ERROR: StatusController.cs > OpenInventory > something wrong with BigStatus or LittleStatus");
+        }
+    }
+    public void LeaveDialogue()
+    {
+        if (bigStatus == BigStatus.InWorld && littleStatus == LittleStatus.Dialogue_InWorld) // leave dialogue
+        {
+            // Status
+            littleStatus = LittleStatus.Default_InWorld;
+
+            // Yarn & UI
+            ClearAllUI();
+            inWorldScreen.gameObject.SetActive(true);
+        }
+        else
+        {
+            UnityEngine.Debug.Log("ERROR: StatusController.cs > CloseInventory > something wrong with BigStatus or LittleStatus");
+        }
+    }
 
     // Update is called once per frame
     void Update()

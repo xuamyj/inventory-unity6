@@ -141,10 +141,28 @@ public class PlayerController : MonoBehaviour
             GameObject obj = interactCollider.currTriggerObj;
             UnityEngine.Debug.Log("Hi " + obj);
 
+            /* ---- INVENTORY ---- */
             if (obj && obj.CompareTag("Chest"))
             {
                 ChestController chest = obj.GetComponent<ChestController>();
-                StatusController.instance.ToggleInventory(chest.inventoryType);
+                StatusController.instance.OpenInventory(chest.inventoryType);
+            }
+
+            /* ---- DIALOGUE ---- */
+            if (obj && obj.CompareTag("Friend"))
+            {
+                FriendController friend = obj.GetComponent<FriendController>();
+                int index = friend.yarnNodeIndex;
+                int len = friend.yarnNodeNames.Count;
+                if (index >= 0 && index < len)
+                {
+                    string currYarnNodeName = friend.yarnNodeNames[index];
+                    StatusController.instance.EnterDialogue(currYarnNodeName);
+                }
+                else
+                {
+                    UnityEngine.Debug.Log("No dialogues to run. index = " + index + ", list length = " + len);
+                }
             }
         }
         else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Inventory_InWorld)

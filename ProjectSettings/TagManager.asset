@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Chest
   - Friend
+  - Inventoryable
   layers:
   - Default
   - TransparentFX

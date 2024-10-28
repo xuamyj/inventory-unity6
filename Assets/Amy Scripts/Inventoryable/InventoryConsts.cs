@@ -20,9 +20,6 @@ public class ItemInfo
 
 public class InventoryConsts : MonoBehaviour
 {
-    /* ---- CONSTS ---- */
-    const string SPRITE_BLANK = "Sprite-blankobj_0.png";
-
     /* ---- DATA, should be used like a const ---- */
     public Dictionary<string, ItemInfo> itemInfoMap;
 
@@ -34,8 +31,8 @@ public class InventoryConsts : MonoBehaviour
 
         /* ---- DATA ---- */
         itemInfoMap = new Dictionary<string, ItemInfo>();
-        itemInfoMap["lemon"] = new ItemInfo("lemon", "Lemon", "Crocus.png");
-        itemInfoMap["crocus"] = new ItemInfo("crocus", "Crocus", "Sprite-lemon2.png");
+        itemInfoMap["lemon"] = new ItemInfo("lemon", "Lemon", "Sprite-lemon2");
+        itemInfoMap["crocus"] = new ItemInfo("crocus", "Crocus", "Crocus");
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

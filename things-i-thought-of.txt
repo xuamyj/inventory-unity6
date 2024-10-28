@@ -1,15 +1,15 @@
 
 dialogue:
-is it fine that statusscript dragged dialoguesystem and vice versa?
 advance dialogue when click anywhere, not just Continue
 later add full name, character image
 give the background an image
 
-box: add stardew navigation (i think esc to exit?)
+box: 
+add stardew navigation (i think esc to exit?)
+omg need duplicates :O 
 
 get at least a simple pixel art generator on my computer [eg. quick cutscene background generation]
 default pivot to Sprite Editor > bottom center, Inspector > Sprite Renderer > sprite sort point to bottom center
-do i need to put inventoryconsts inside StatusScript so it runs? does it have to be in the hierarchy to run? 
 
 --
 
@@ -17,3 +17,8 @@ learn how to make bars: water, energy
 money icon
 make the water shake a little bit when you use it
 font background transparent not
+
+--
+
+do i need to put inventoryconsts inside StatusScript so it runs? does it have to be in the hierarchy to run? YES
+is it fine that statusscript dragged dialoguesystem and vice versa? IS OK

@@ -153,7 +153,7 @@ public class PlayerController : MonoBehaviour
             {
                 FriendController friend = obj.GetComponent<FriendController>();
                 int index = friend.yarnNodeIndex;
-                int len = friend.yarnNodeNames.Count;
+                int len = friend.yarnNodeNames.Capacity;
                 if (index >= 0 && index < len)
                 {
                     string currYarnNodeName = friend.yarnNodeNames[index];

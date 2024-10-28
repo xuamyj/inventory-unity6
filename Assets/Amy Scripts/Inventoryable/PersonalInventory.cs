@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PersonalInventory : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class PersonalInventory : MonoBehaviour
     private void Awake()
     {
         /* ---- DATA ---- */
-        realSlots = new List<string>(10);
+        realSlots = new List<string>(new string[10]);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -35,7 +36,7 @@ public class PersonalInventory : MonoBehaviour
 
         UnityEngine.Debug.Log("Hit TryAddItemToEmptySlot( " + itemKey + " )");
 
-        for (int i = 0; i < realSlots.Count; i++)
+        for (int i = 0; i < realSlots.Capacity; i++)
         {
             if (realSlots[i] == null)
             {
@@ -43,11 +44,14 @@ public class PersonalInventory : MonoBehaviour
 
                 ItemInfo item = InventoryConsts.instance.itemInfoMap[itemKey];
                 string spriteUrl = item.spriteUrl;
-                // visibleSlots[i].GetComponent<Image>().SetSourceImage(spriteUrl);
+                UnityEngine.UI.Image img = visibleSlots[i].GetComponent<UnityEngine.UI.Image>();
+                img.sprite = Resources.Load<Sprite>(spriteUrl);
 
+                UnityEngine.Debug.Log("True! index " + i);
                 return true;
             }
         }
+        UnityEngine.Debug.Log("False!");
         return false;
     }
 }

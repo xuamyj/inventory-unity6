@@ -9,6 +9,7 @@ box: add stardew navigation (i think esc to exit?)
 
 get at least a simple pixel art generator on my computer [eg. quick cutscene background generation]
 default pivot to Sprite Editor > bottom center, Inspector > Sprite Renderer > sprite sort point to bottom center
+do i need to put inventoryconsts inside StatusScript so it runs? does it have to be in the hierarchy to run? 
 
 --
 

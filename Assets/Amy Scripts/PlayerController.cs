@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour
             GameObject obj = interactCollider.currTriggerObj;
             UnityEngine.Debug.Log("Hi " + obj);
 
-            /* ---- INVENTORY ---- */
+            /* ---- CHEST ---- */
             if (obj && obj.CompareTag("Chest"))
             {
                 ChestController chest = obj.GetComponent<ChestController>();
@@ -163,6 +163,17 @@ public class PlayerController : MonoBehaviour
                 {
                     UnityEngine.Debug.Log("No dialogues to run. index = " + index + ", list length = " + len);
                 }
+            }
+
+            /* ---- OBJECT ---- */
+            if (obj && obj.CompareTag("Inventoryable"))
+            {
+                Inventoryable item = obj.GetComponent<Inventoryable>();
+                string itemKey = item.itemKey;
+
+                PersonalInventory personalI = StatusController.instance.personalInventoryUI.GetComponent<PersonalInventory>();
+
+                personalI.TryAddItemToEmptySlot(itemKey);
             }
         }
         else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Inventory_InWorld)

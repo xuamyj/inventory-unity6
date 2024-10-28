@@ -70,6 +70,7 @@ public class StatusController : MonoBehaviour
     public GameObject storageInventoryUI;
     public GameObject displayInventoryUI;
     public GameObject sellingInventoryUI;
+    public GameObject personalInventoryUI;
     /* ---- YARN: DRAGGED ---- */
     public DialogueRunner yarnRunner;
 
@@ -145,7 +146,7 @@ public class StatusController : MonoBehaviour
         inWorldScreen.gameObject.SetActive(true);
     }
 
-    /* ---- INVENTORY ---- */
+    /* ---- CHEST ---- */
     public void OpenInventory(InventoryType type)
     {
         if (bigStatus == BigStatus.InWorld && littleStatus == LittleStatus.Default_InWorld) // open inventory
@@ -222,7 +223,7 @@ public class StatusController : MonoBehaviour
         }
         else
         {
-            UnityEngine.Debug.Log("ERROR: StatusController.cs > OpenInventory > something wrong with BigStatus or LittleStatus");
+            UnityEngine.Debug.Log("ERROR: StatusController.cs > EnterDialogue > something wrong with BigStatus or LittleStatus");
         }
     }
     public void LeaveDialogue()
@@ -238,7 +239,7 @@ public class StatusController : MonoBehaviour
         }
         else
         {
-            UnityEngine.Debug.Log("ERROR: StatusController.cs > CloseInventory > something wrong with BigStatus or LittleStatus");
+            UnityEngine.Debug.Log("ERROR: StatusController.cs > LeaveDialogue > something wrong with BigStatus or LittleStatus");
         }
     }
 

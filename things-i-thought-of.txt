@@ -1,11 +1,11 @@
-make the background prettier
 
 start when walk on the orb
 state machine: don't move around during dialogue
 move forward when click anywhere
 
 later add full name, character image
-get at least a simple pixel art generator on my computer
+give the background an image
+get at least a simple pixel art generator on my computer [eg. quick cutscene background generation]
 
 --
 

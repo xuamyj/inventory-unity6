@@ -173,6 +173,7 @@ public class PlayerController : MonoBehaviour
 
                 PersonalInventory personalI = StatusController.instance.personalInventoryUI.GetComponent<PersonalInventory>();
 
+                Destroy(obj);
                 personalI.TryAddItemToEmptySlot(itemKey);
             }
         }

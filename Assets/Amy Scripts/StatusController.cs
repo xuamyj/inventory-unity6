@@ -27,6 +27,8 @@ public class StatusController : MonoBehaviour
         Summer,
         Fall
     }
+    const int MAX_WATER = 12;
+    const int MAX_ENERGY = 40;
 
     public enum BigStatus
     {
@@ -71,6 +73,7 @@ public class StatusController : MonoBehaviour
     public GameObject displayInventoryUI;
     public GameObject sellingInventoryUI;
     public GameObject personalInventoryUI;
+    public GameObject waterUI;
     /* ---- YARN: DRAGGED ---- */
     public DialogueRunner yarnRunner;
 

@@ -17270,6 +17270,72 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: long_table
+      rect:
+        serializedVersion: 2
+        x: 1650
+        y: 770
+        width: 27
+        height: 12
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd7d44fe621c649f68c907fb4a7d6af9
+      internalID: 1797771664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: darker_chair
+      rect:
+        serializedVersion: 2
+        x: 1570
+        y: 754
+        width: 12
+        height: 12
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00d8575f6360e491fb6cc805bb706843
+      internalID: 1105180214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lighter_chair
+      rect:
+        serializedVersion: 2
+        x: 1554
+        y: 754
+        width: 12
+        height: 12
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed63cc40a69ca4601be7638a44689b41
+      internalID: 1488923117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -17284,7 +17350,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      big_table: 1674030571
+      darker_chair: 1105180214
       display_cabinet: 2137798023
+      lighter_chair: 1488923117
+      long_table: 1797771664
+      original_atlas_0: 1184427292
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -7,6 +7,8 @@ TagManager:
   - Chest
   - Friend
   - Inventoryable
+  - Water
+  - Waterable
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - Player
   - PInteractCollider
   - Confiner
-  - 
+  - PNoInteract
   - 
   - 
   - 

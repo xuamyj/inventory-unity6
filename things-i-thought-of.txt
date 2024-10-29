@@ -1,22 +1,25 @@
 
 dialogue:
+isadora conversation reduce 3 silver coins / add 1 support pt (and possibly be slightly different if replay)
 advance dialogue when click anywhere, not just Continue
 later add full name, character image
-give the background an image
+give the background an image (aesth)
 
 box: 
-add stardew navigation (i think esc to exit?)
+add stardew navigation (i think esc to exit?) 
+ofc, move items around (and eventually to other inventories)
 omg need duplicates :O 
 
 get at least a simple pixel art generator on my computer [eg. quick cutscene background generation]
 default pivot to Sprite Editor > bottom center, Inspector > Sprite Renderer > sprite sort point to bottom center
+font background transparent not
 
 --
 
+(aesth)
 learn how to make bars: water, energy
 money icon
 make the water shake a little bit when you use it
-font background transparent not
 
 --
 

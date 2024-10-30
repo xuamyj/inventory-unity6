@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
     public InputAction MouseRightAction;
     public GameObject interactColliderObj;
 
+    /* ---- LEFT CLICK ---- */
+    public InputAction MouseLeftAction;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,6 +42,10 @@ public class PlayerController : MonoBehaviour
         /* ---- RIGHT CLICK ---- */
         MouseRightAction.Enable();
         MouseRightAction.performed += RightClickedMouse;
+
+        /* ---- LEFT CLICK ---- */
+        MouseLeftAction.Enable();
+        MouseLeftAction.performed += LeftClickedMouse;
     }
 
     // Update is called once per frame
@@ -186,6 +193,7 @@ public class PlayerController : MonoBehaviour
                 Destroy(obj);
                 StatusController.instance.BigToCutsceneScreen(cutsceneKey);
             }
+
         }
         else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Inventory_InWorld)
         {
@@ -195,6 +203,47 @@ public class PlayerController : MonoBehaviour
         {
 
         }
+    }
 
+    /* ---- LEFT CLICK ---- */
+    void LeftClickedMouse(InputAction.CallbackContext context)
+    {
+        (StatusController.BigStatus bigStatus, StatusController.LittleStatus littleStatus) = StatusController.instance.GetStatus();
+
+        if (bigStatus == StatusController.BigStatus.GameSaved)
+        {
+
+        }
+        else if (bigStatus == StatusController.BigStatus.Calendar)
+        {
+
+        }
+        else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Default_InWorld)
+        {
+            PInteractCollider interactCollider = interactColliderObj.GetComponent<PInteractCollider>();
+            GameObject obj = interactCollider.currTriggerObj;
+            UnityEngine.Debug.Log("(LEFT) Hi " + obj);
+
+            /* ---- WATER SOURCE ---- */
+            if (obj && obj.CompareTag("Water"))
+            {
+                StatusController.instance.TryGetWater();
+            }
+
+            /* ---- WATERABLE ---- */
+            if (obj && obj.CompareTag("Waterable"))
+            {
+                Waterable thing = obj.GetComponent<Waterable>();
+                StatusController.instance.TryWateringThing(thing);
+            }
+        }
+        else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Inventory_InWorld)
+        {
+
+        }
+        else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Dialogue_InWorld)
+        {
+
+        }
     }
 }

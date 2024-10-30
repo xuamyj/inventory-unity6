@@ -295,6 +295,23 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   interactColliderObj: {fileID: 9174929455599074847}
+  MouseLeftAction:
+    m_Name: Mouse Left
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 01ff7875-736c-4f8f-8026-f827cb48c1b3
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: b1e1312d-d0f4-498b-8f74-30bcb056723c
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Mouse Left
+      m_Flags: 0
+    m_Flags: 0
 --- !u!1 &9174929455599074847
 GameObject:
   m_ObjectHideFlags: 0

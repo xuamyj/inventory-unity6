@@ -27,8 +27,8 @@ public class StatusController : MonoBehaviour
         Summer,
         Fall
     }
-    const int MAX_WATER = 12;
-    const int MAX_ENERGY = 40;
+    public const int MAX_WATER = 12;
+    public const int MAX_ENERGY = 40;
 
     public enum BigStatus
     {
@@ -97,6 +97,7 @@ public class StatusController : MonoBehaviour
         currInventoryType = InventoryType.Storage; // we'll say this one is default for now
 
         /* ---- GAME START ---- */
+        currWater = 0;
         BigToGameSavedScreen();
     }
 
@@ -159,6 +160,7 @@ public class StatusController : MonoBehaviour
         // UI
         ClearAllUI();
         inWorldScreen.gameObject.SetActive(true);
+        waterUI.GetComponent<WaterUIHelper>().UpdateWaterUI(currWater);
     }
 
     /* ---- CHEST ---- */
@@ -256,6 +258,52 @@ public class StatusController : MonoBehaviour
         {
             UnityEngine.Debug.Log("ERROR: StatusController.cs > LeaveDialogue > something wrong with BigStatus or LittleStatus");
         }
+    }
+
+    /* ---- WATER ---- */
+    public void TryGetWater()
+    {
+        if (bigStatus == BigStatus.InWorld && littleStatus == LittleStatus.Default_InWorld)
+        {
+            // Data
+            currWater = MAX_WATER;
+
+            // UI
+            waterUI.GetComponent<WaterUIHelper>().UpdateWaterUI(currWater);
+
+            // Object - none for this one
+        }
+        else
+        {
+            UnityEngine.Debug.Log("ERROR: StatusController.cs > TryGetWater > something wrong with BigStatus or LittleStatus");
+        }
+    }
+    public bool TryWateringThing(Waterable thing)
+    {
+        if (bigStatus == BigStatus.InWorld && littleStatus == LittleStatus.Default_InWorld)
+        {
+            if (currWater <= 0)
+            {
+                UnityEngine.Debug.Log("Water is empty :(");
+                return false;
+            }
+
+            // Data
+            currWater -= 1;
+
+            // UI
+            waterUI.GetComponent<WaterUIHelper>().UpdateWaterUI(currWater);
+
+            // Object
+            GameObject toBecome = thing.wateredToBecome;
+            thing.gameObject.SetActive(false);
+            toBecome.SetActive(true);
+        }
+        else
+        {
+            UnityEngine.Debug.Log("ERROR: StatusController.cs > TryWateringThing > something wrong with BigStatus or LittleStatus");
+        }
+        return false;
     }
 
     // Update is called once per frame

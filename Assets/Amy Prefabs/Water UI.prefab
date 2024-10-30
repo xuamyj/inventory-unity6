@@ -55,7 +55,7 @@ MonoBehaviour:
   waterEmptyUI: {fileID: 6802118964443695973}
   waterPartialUI: {fileID: 5671466236215369147}
   waterFullUI: {fileID: 5350192400989124604}
-  waterTextUI: {fileID: 4647105813918914854}
+  waterTextUI: {fileID: 726475382544126204}
 --- !u!1 &4647105813918914854
 GameObject:
   m_ObjectHideFlags: 0

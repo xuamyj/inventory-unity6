@@ -9,6 +9,7 @@ TagManager:
   - Inventoryable
   - Water
   - Waterable
+  - CutsceneStarter
   layers:
   - Default
   - TransparentFX

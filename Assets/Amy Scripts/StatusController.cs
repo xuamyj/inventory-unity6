@@ -139,7 +139,7 @@ public class StatusController : MonoBehaviour
         ClearAllUI();
         calendarScreen.gameObject.SetActive(true);
     }
-    public void BigToCutsceneScreen()
+    public void BigToCutsceneScreen(string cutsceneKey)
     {
         // Status
         bigStatus = BigStatus.CutScene;
@@ -148,7 +148,7 @@ public class StatusController : MonoBehaviour
         // UI
         ClearAllUI();
         CutsceneController cutsceneC = cutsceneObj.GetComponent<CutsceneController>();
-        cutsceneC.SetupAndStartDialogue("wally");
+        cutsceneC.SetupAndStartDialogue(cutsceneKey);
     }
     public void BigToInWorldScreen()
     {

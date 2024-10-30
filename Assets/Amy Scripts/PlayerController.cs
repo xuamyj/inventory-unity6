@@ -176,6 +176,16 @@ public class PlayerController : MonoBehaviour
                 Destroy(obj);
                 personalI.TryAddItemToEmptySlot(itemKey);
             }
+
+            /* ---- CUTSCENE STARTER (eg. Wally) ---- */
+            if (obj && obj.CompareTag("CutsceneStarter"))
+            {
+                CuStarterController cuStarterC = obj.GetComponent<CuStarterController>();
+                string cutsceneKey = cuStarterC.cutsceneKey;
+
+                Destroy(obj);
+                StatusController.instance.BigToCutsceneScreen(cutsceneKey);
+            }
         }
         else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Inventory_InWorld)
         {

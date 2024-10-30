@@ -76,6 +76,7 @@ public class StatusController : MonoBehaviour
     public GameObject waterUI;
     /* ---- YARN: DRAGGED ---- */
     public DialogueRunner yarnRunner;
+    public GameObject cutsceneObj;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -137,6 +138,17 @@ public class StatusController : MonoBehaviour
         // UI
         ClearAllUI();
         calendarScreen.gameObject.SetActive(true);
+    }
+    public void BigToCutsceneScreen()
+    {
+        // Status
+        bigStatus = BigStatus.CutScene;
+        littleStatus = LittleStatus.Null;
+
+        // UI
+        ClearAllUI();
+        CutsceneController cutsceneC = cutsceneObj.GetComponent<CutsceneController>();
+        cutsceneC.SetupAndStartDialogue("wally");
     }
     public void BigToInWorldScreen()
     {

@@ -21,6 +21,10 @@ public class CutsceneInfo
 
 public class CutsceneController : MonoBehaviour
 {
+    /* ---- ONE-OFFS: DRAGGED ---- */
+    public GameObject oneoffBowl;
+    public GameObject oneoffWater;
+
     /* UI: DRAGGED */
     public UnityEngine.UI.Image backgroundImage;
 
@@ -67,6 +71,14 @@ public class CutsceneController : MonoBehaviour
 
         // set background
         backgroundImage.sprite = Resources.Load<Sprite>(bUrl);
+
+        // TODO: do this properly later. currently one-off
+        if (cutsceneKey == "eat")
+        {
+            StatusController.instance.TryAddEnergy(StatusController.MAX_ENERGY);
+            oneoffBowl.SetActive(false);
+            oneoffWater.SetActive(false);
+        }
 
         // set script
         cutsceneRunner.StartDialogue(yNName);

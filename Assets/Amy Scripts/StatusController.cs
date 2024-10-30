@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using Yarn.Unity;
 
@@ -74,9 +76,13 @@ public class StatusController : MonoBehaviour
     public GameObject sellingInventoryUI;
     public GameObject personalInventoryUI;
     public GameObject waterUI;
+    public TextMeshProUGUI energyTextUI;
     /* ---- YARN: DRAGGED ---- */
     public DialogueRunner yarnRunner;
     public GameObject cutsceneObj;
+
+    /* ---- ONE-OFFS: DRAGGED ---- */
+    public OneoffChair oneoffChair;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -98,6 +104,7 @@ public class StatusController : MonoBehaviour
 
         /* ---- GAME START ---- */
         currWater = 0;
+        currEnergy = 10;
         BigToGameSavedScreen();
     }
 
@@ -161,6 +168,7 @@ public class StatusController : MonoBehaviour
         ClearAllUI();
         inWorldScreen.gameObject.SetActive(true);
         waterUI.GetComponent<WaterUIHelper>().UpdateWaterUI(currWater);
+        energyTextUI.text = "" + currEnergy + "/" + StatusController.MAX_ENERGY + " E";
     }
 
     /* ---- CHEST ---- */
@@ -267,9 +275,11 @@ public class StatusController : MonoBehaviour
         {
             // Data
             currWater = MAX_WATER;
+            currEnergy -= 1;
 
             // UI
             waterUI.GetComponent<WaterUIHelper>().UpdateWaterUI(currWater);
+            energyTextUI.text = "" + currEnergy + "/" + StatusController.MAX_ENERGY + " E";
 
             // Object - none for this one
         }
@@ -290,20 +300,36 @@ public class StatusController : MonoBehaviour
 
             // Data
             currWater -= 1;
+            currEnergy -= 1;
 
             // UI
             waterUI.GetComponent<WaterUIHelper>().UpdateWaterUI(currWater);
+            energyTextUI.text = "" + currEnergy + "/" + StatusController.MAX_ENERGY + " E";
 
             // Object
             GameObject toBecome = thing.wateredToBecome;
             thing.gameObject.SetActive(false);
             toBecome.SetActive(true);
+
+            oneoffChair.DoThing(); // one-off
         }
         else
         {
             UnityEngine.Debug.Log("ERROR: StatusController.cs > TryWateringThing > something wrong with BigStatus or LittleStatus");
         }
         return false;
+    }
+
+    /* ---- ADD ENERGY ---- */
+    public void TryAddEnergy(int energyToAdd)
+    {
+        // in theory, can gain energy from cutscene or regular food. so this function always runs
+
+        // Data
+        currEnergy = Math.Min(currEnergy + energyToAdd, MAX_ENERGY);
+
+        // UI
+        energyTextUI.text = "" + currEnergy + "/" + StatusController.MAX_ENERGY + " E";
     }
 
     // Update is called once per frame

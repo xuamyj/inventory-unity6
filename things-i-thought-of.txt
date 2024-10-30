@@ -11,8 +11,11 @@ add stardew navigation (i think esc to exit?)
 ofc, move items around (and eventually to other inventories)
 omg need duplicates :O 
 
+create actual consquence for running out of energy (possibly new screen)
+
 default pivot to Sprite Editor > bottom center, Inspector > Sprite Renderer > sprite sort point to bottom center
 font background transparent not
+help me make things glow if they are noticed by PInteractCollider? 
 
 --
 

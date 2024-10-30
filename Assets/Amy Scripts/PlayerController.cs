@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     /* ---- RIGHT CLICK ---- */
     public InputAction MouseRightAction;
-    public GameObject interactColliderObj;
+    public GameObject interactColliderObj; // DRAGGED
 
     /* ---- LEFT CLICK ---- */
     public InputAction MouseLeftAction;
@@ -129,6 +129,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void CutsceneStarterLeOrRiHelper(GameObject obj)
+    {
+        if (obj && obj.CompareTag("CutsceneStarter"))
+        {
+            CuStarterController cuStarterC = obj.GetComponent<CuStarterController>();
+            string cutsceneKey = cuStarterC.cutsceneKey;
+
+            Destroy(obj);
+            StatusController.instance.BigToCutsceneScreen(cutsceneKey);
+        }
+    }
+
     /* ---- RIGHT CLICK ---- */
     void RightClickedMouse(InputAction.CallbackContext context)
     {
@@ -185,15 +197,7 @@ public class PlayerController : MonoBehaviour
             }
 
             /* ---- CUTSCENE STARTER (eg. Wally) ---- */
-            if (obj && obj.CompareTag("CutsceneStarter"))
-            {
-                CuStarterController cuStarterC = obj.GetComponent<CuStarterController>();
-                string cutsceneKey = cuStarterC.cutsceneKey;
-
-                Destroy(obj);
-                StatusController.instance.BigToCutsceneScreen(cutsceneKey);
-            }
-
+            CutsceneStarterLeOrRiHelper(obj);
         }
         else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Inventory_InWorld)
         {
@@ -236,6 +240,9 @@ public class PlayerController : MonoBehaviour
                 Waterable thing = obj.GetComponent<Waterable>();
                 StatusController.instance.TryWateringThing(thing);
             }
+
+            /* ---- CUTSCENE STARTER (eg. Chair) ---- */
+            CutsceneStarterLeOrRiHelper(obj);
         }
         else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Inventory_InWorld)
         {

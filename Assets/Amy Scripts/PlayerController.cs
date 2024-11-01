@@ -157,7 +157,7 @@ public class PlayerController : MonoBehaviour
         else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Default_InWorld)
         {
             PInteractCollider interactCollider = interactColliderObj.GetComponent<PInteractCollider>();
-            GameObject obj = interactCollider.currTriggerObj;
+            GameObject obj = interactCollider.GetNearestTriggerObj();
             UnityEngine.Debug.Log("Hi " + obj);
 
             /* ---- CHEST ---- */
@@ -225,7 +225,7 @@ public class PlayerController : MonoBehaviour
         else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Default_InWorld)
         {
             PInteractCollider interactCollider = interactColliderObj.GetComponent<PInteractCollider>();
-            GameObject obj = interactCollider.currTriggerObj;
+            GameObject obj = interactCollider.GetNearestTriggerObj();
             UnityEngine.Debug.Log("(LEFT) Hi " + obj);
 
             /* ---- WATER SOURCE ---- */
@@ -250,7 +250,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Dialogue_InWorld)
         {
-
+            UnityEngine.Debug.Log("stuck in here?");
         }
     }
 }

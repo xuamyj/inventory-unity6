@@ -1,15 +1,19 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PInteractCollider : MonoBehaviour
 {
     /* ---- TRIGGER ---- */
-    public GameObject currTriggerObj; // TODO: track a list and get the closest one, don't let the second one clear the first
+    public HashSet<GameObject> currTriggerObjs;
+    void Awake()
+    {
+        currTriggerObjs = new HashSet<GameObject>();
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        /* ---- TRIGGER ---- */
-        currTriggerObj = null;
+
     }
 
     // Update is called once per frame
@@ -21,10 +25,24 @@ public class PInteractCollider : MonoBehaviour
     /* ---- TRIGGER ---- */
     void OnTriggerEnter2D(Collider2D other)
     {
-        currTriggerObj = other.gameObject;
+        currTriggerObjs.Add(other.gameObject);
     }
     void OnTriggerExit2D(Collider2D other)
     {
-        currTriggerObj = null;
+        currTriggerObjs.Remove(other.gameObject);
+    }
+    public GameObject GetNearestTriggerObj()
+    {
+        float shortestDistance = float.MaxValue;
+        GameObject nearestObj = null;
+        foreach (GameObject obj in currTriggerObjs)
+        {
+            float dist = Vector3.Distance(obj.transform.position, transform.position);
+            if (dist < shortestDistance)
+            {
+                nearestObj = obj;
+            }
+        }
+        return nearestObj;
     }
 }

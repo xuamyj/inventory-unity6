@@ -27,9 +27,10 @@ public class CutsceneController : MonoBehaviour
 
     /* UI: DRAGGED */
     public UnityEngine.UI.Image backgroundImage;
+    public GameObject cutsceneCanvas;
 
     /* ---- DATA, should be used like a const ---- */
-    const string CUTSCENE_BLANK_URL = "cutscene-blank";
+    // const string CUTSCENE_BLANK_URL = "cutscene-blank";
     private Dictionary<string, CutsceneInfo> cutsceneInfoMap;
 
     /* ---- YARN ---- */
@@ -69,7 +70,8 @@ public class CutsceneController : MonoBehaviour
         string yNName = cutsceneInfoMap[cutsceneKey].yarnNodeName;
         string bUrl = cutsceneInfoMap[cutsceneKey].backgroundUrl;
 
-        // set background
+        // set active + background
+        cutsceneCanvas.SetActive(true);
         backgroundImage.sprite = Resources.Load<Sprite>(bUrl);
 
         // TODO: do this properly later. currently one-off
@@ -90,8 +92,9 @@ public class CutsceneController : MonoBehaviour
     */
     public void StopAndToInWorld()
     {
-        // unset background
-        backgroundImage.sprite = Resources.Load<Sprite>(CUTSCENE_BLANK_URL);
+        // unset active
+        cutsceneCanvas.SetActive(false);
+        // backgroundImage.sprite = Resources.Load<Sprite>(CUTSCENE_BLANK_URL);
 
         StatusController.instance.BigToInWorldScreen();
     }

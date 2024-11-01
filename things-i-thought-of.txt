@@ -1,4 +1,3 @@
-fix the PInteractCollider to be a list and not 1 object
 
 dialogue:
 isadora conversation reduce 3 silver coins / add 1 support pt (and possibly be slightly different if replay)

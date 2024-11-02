@@ -17185,8 +17185,8 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  alignment: 7
+  spritePivot: {x: 0.5, y: 0}
   spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -17204,7 +17204,7 @@ TextureImporter:
   ignorePngGamma: 0
   applyGammaDecoding: 0
   swizzle: 50462976
-  cookieLightType: 1
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
@@ -17224,7 +17224,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -17237,7 +17237,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -17248,28 +17248,6 @@ TextureImporter:
   spriteSheet:
     serializedVersion: 2
     sprites:
-    - serializedVersion: 2
-      name: display_cabinet
-      rect:
-        serializedVersion: 2
-        x: 1730
-        y: 721
-        width: 28
-        height: 19
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: feea9b2d336874a059b925b96029de20
-      internalID: 2137798023
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     - serializedVersion: 2
       name: long_table
       rect:
@@ -17286,36 +17264,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd7d44fe621c649f68c907fb4a7d6af9
-      internalID: 1797771664
+      spriteID: 36edc4a784c9d4ea9ba3098b780faf03
+      internalID: -388367627
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: darker_chair
-      rect:
-        serializedVersion: 2
-        x: 1570
-        y: 754
-        width: 12
-        height: 12
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 00d8575f6360e491fb6cc805bb706843
-      internalID: 1105180214
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: lighter_chair
+      name: light_chair
       rect:
         serializedVersion: 2
         x: 1554
@@ -17330,8 +17286,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed63cc40a69ca4601be7638a44689b41
-      internalID: 1488923117
+      spriteID: b3fde7d5b391e4173bb6837758fa12f1
+      internalID: -959207394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: display_cabinet
+      rect:
+        serializedVersion: 2
+        x: 1730
+        y: 721
+        width: 28
+        height: 19
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3333cbabf58b14710b7294ea8570d56c
+      internalID: -1472952224
       vertices: []
       indices: 
       edges: []
@@ -17341,7 +17319,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
@@ -17350,12 +17328,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      big_table: 1674030571
-      darker_chair: 1105180214
-      display_cabinet: 2137798023
-      lighter_chair: 1488923117
-      long_table: 1797771664
-      original_atlas_0: 1184427292
+      display_cabinet: -1472952224
+      light_chair: -959207394
+      long_table: -388367627
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "inventory-unity6.sln"
+    "dotnet.defaultSolution": "inv crafting test.sln"
 }

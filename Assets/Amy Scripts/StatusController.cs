@@ -44,6 +44,7 @@ public class StatusController : MonoBehaviour
         Default_InWorld,
         Inventory_InWorld,
         Dialogue_InWorld,
+        Crafting_InWorld,
         Null
     }
     public enum InventoryType
@@ -51,6 +52,13 @@ public class StatusController : MonoBehaviour
         Storage,
         Display,
         Selling
+    }
+    public enum CraftingType
+    {
+        Kiln, // clay + water + heat = pottery
+        Stove, // carrot (or flour) + water + heat = food
+        Infuser, // lemon + garlic + water + magic = vulnerary
+        Papermachine, // wood (pulp) + water + magic = tome 
     }
 
     /* ---- VARIABLES (FIELDS) ---- */
@@ -66,6 +74,7 @@ public class StatusController : MonoBehaviour
     [SerializeField] private BigStatus bigStatus;
     [SerializeField] private LittleStatus littleStatus; // only relevant if BigStatus == InWorld
     private InventoryType currInventoryType; // only relevant if LittleStatus = Inventory_InWorld
+    private CraftingType currCraftingType; // only relevant if only relevant if LittleStatus = Crafting_InWorld
 
     /* ---- UI: DRAGGED ---- */
     public GameObject gameSavedScreen;
@@ -74,9 +83,10 @@ public class StatusController : MonoBehaviour
     public GameObject storageInventoryUI;
     public GameObject displayInventoryUI;
     public GameObject sellingInventoryUI;
-    public GameObject personalInventoryUI;
+    public GameObject personalInventoryUI; // these 3 are part of inWorldScreen
     public GameObject waterUI;
     public TextMeshProUGUI energyTextUI;
+    public GameObject craftingUI;
     /* ---- YARN: DRAGGED ---- */
     public DialogueRunner yarnRunner;
     public GameObject cutsceneObj;
@@ -101,6 +111,7 @@ public class StatusController : MonoBehaviour
             {"MN", 0}, // Malcolm - Nadira
         };
         currInventoryType = InventoryType.Storage; // we'll say this one is default for now
+        currCraftingType = CraftingType.Kiln; // we'll say this one is default for now
 
         /* ---- GAME START ---- */
         currWater = 0;
@@ -123,6 +134,7 @@ public class StatusController : MonoBehaviour
         storageInventoryUI.gameObject.SetActive(false);
         displayInventoryUI.gameObject.SetActive(false);
         sellingInventoryUI.gameObject.SetActive(false);
+        craftingUI.gameObject.SetActive(false);
     }
 
     public void BigToGameSavedScreen()
@@ -231,6 +243,52 @@ public class StatusController : MonoBehaviour
         else
         {
             UnityEngine.Debug.Log("ERROR: StatusController.cs > CloseInventory > something wrong with BigStatus or LittleStatus");
+        }
+    }
+
+    /* ---- CRAFTING ---- */
+    public void OpenCrafting()
+    {
+        if (bigStatus == BigStatus.InWorld && littleStatus == LittleStatus.Default_InWorld) // open crafting
+        {
+            // Status
+            littleStatus = LittleStatus.Crafting_InWorld;
+
+            // UI
+            if (currCraftingType == CraftingType.Kiln)
+            {
+                craftingUI.gameObject.SetActive(true);
+            }
+            else
+            {
+                UnityEngine.Debug.Log("ERROR: StatusController.cs > OpenCrafting > something wrong with CraftingType");
+            }
+        }
+        else
+        {
+            UnityEngine.Debug.Log("ERROR: StatusController.cs > OpenCrafting > something wrong with BigStatus or LittleStatus");
+        }
+    }
+    public void CloseCrafting()
+    {
+        if (bigStatus == BigStatus.InWorld && littleStatus == LittleStatus.Crafting_InWorld) // close crafting
+        {
+            // Status
+            littleStatus = LittleStatus.Default_InWorld;
+
+            // UI
+            if (currCraftingType == CraftingType.Kiln)
+            {
+                craftingUI.gameObject.SetActive(false);
+            }
+            else
+            {
+                UnityEngine.Debug.Log("ERROR: StatusController.cs > CloseCrafting > something wrong with CraftingType");
+            }
+        }
+        else
+        {
+            UnityEngine.Debug.Log("ERROR: StatusController.cs > CloseCrafting > something wrong with BigStatus or LittleStatus");
         }
     }
 

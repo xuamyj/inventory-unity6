@@ -12,10 +12,6 @@ omg need duplicates :O
 
 create actual consquence for running out of energy (possibly new screen)
 
-default pivot to Sprite Editor > bottom center, Inspector > Sprite Renderer > sprite sort point to bottom center
-font background transparent not
-help me make things glow if they are noticed by PInteractCollider? 
-
 --
 
 (aesth)
@@ -27,3 +23,7 @@ make the water shake a little bit when you use it
 
 do i need to put inventoryconsts inside StatusScript so it runs? does it have to be in the hierarchy to run? YES
 is it fine that statusscript dragged dialoguesystem and vice versa? IS OK
+
+default pivot to Sprite Editor > bottom center, Inspector > Sprite Renderer > sprite sort point to bottom center
+help me make things glow if they are noticed by PInteractCollider? 
+font background transparent not

@@ -1835,26 +1835,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6494998767032220418, guid: 0431f31fc8b444866b17bb9a00be88db, type: 3}
-      propertyPath: m_Size.x
-      value: 0.63
-      objectReference: {fileID: 0}
-    - target: {fileID: 6494998767032220418, guid: 0431f31fc8b444866b17bb9a00be88db, type: 3}
-      propertyPath: m_Size.y
-      value: 0.63
-      objectReference: {fileID: 0}
-    - target: {fileID: 6494998767032220418, guid: 0431f31fc8b444866b17bb9a00be88db, type: 3}
-      propertyPath: m_Offset.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6494998767032220418, guid: 0431f31fc8b444866b17bb9a00be88db, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.31
-      objectReference: {fileID: 0}
-    - target: {fileID: 7884768434212914559, guid: 0431f31fc8b444866b17bb9a00be88db, type: 3}
-      propertyPath: cutsceneKey
-      value: eat
-      objectReference: {fileID: 0}
     - target: {fileID: 8923554354102320666, guid: 0431f31fc8b444866b17bb9a00be88db, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6209,7 +6189,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4d03855efc6264ab28dc738aa8206370, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6831,7 +6811,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 4d03855efc6264ab28dc738aa8206370, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7790,7 +7770,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7836,7 +7816,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8771793140593331506, guid: af76c568400a543ac82b054d6e7e981b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4
+      value: 3.763
       objectReference: {fileID: 0}
     - target: {fileID: 8771793140593331506, guid: af76c568400a543ac82b054d6e7e981b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8123,13 +8103,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: CutsceneStarter
       objectReference: {fileID: 0}
+    - target: {fileID: 7884768434212914559, guid: 0431f31fc8b444866b17bb9a00be88db, type: 3}
+      propertyPath: cutsceneKey
+      value: wally
+      objectReference: {fileID: 0}
+    - target: {fileID: 8923554354102320666, guid: 0431f31fc8b444866b17bb9a00be88db, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8923554354102320666, guid: 0431f31fc8b444866b17bb9a00be88db, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8923554354102320666, guid: 0431f31fc8b444866b17bb9a00be88db, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 8923554354102320666, guid: 0431f31fc8b444866b17bb9a00be88db, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.54999983
       objectReference: {fileID: 0}
     - target: {fileID: 8923554354102320666, guid: 0431f31fc8b444866b17bb9a00be88db, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.1
+      value: -0.15000004
       objectReference: {fileID: 0}
     - target: {fileID: 8923554354102320666, guid: 0431f31fc8b444866b17bb9a00be88db, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8141,15 +8137,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8923554354102320666, guid: 0431f31fc8b444866b17bb9a00be88db, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8923554354102320666, guid: 0431f31fc8b444866b17bb9a00be88db, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8923554354102320666, guid: 0431f31fc8b444866b17bb9a00be88db, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8923554354102320666, guid: 0431f31fc8b444866b17bb9a00be88db, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -26,10 +26,24 @@ public class PInteractCollider : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         currTriggerObjs.Add(other.gameObject);
+
+        /* ---- OUTLINE ---- */
+        Material mat = other.GetComponent<Renderer>().material;
+        if (mat != null)
+        {
+            mat.SetFloat("_OutlineAlpha", 1f);
+        }
     }
     void OnTriggerExit2D(Collider2D other)
     {
         currTriggerObjs.Remove(other.gameObject);
+
+        /* ---- OUTLINE ---- */
+        Material mat = other.GetComponent<Renderer>().material;
+        if (mat != null)
+        {
+            mat.SetFloat("_OutlineAlpha", 0f);
+        }
     }
     public GameObject GetNearestTriggerObj()
     {

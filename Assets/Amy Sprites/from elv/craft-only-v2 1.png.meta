@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7e744b85f81b2468799de9baf73a4c18
+guid: c392c4ad045ec421090530e9b122b948
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5400496013543904347
-    second: craft-decorate_0
+      213: -7045122179868191975
+    second: craft-only-v2 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -111,7 +111,29 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: craft-only-v2 1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 8
+        width: 114
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9131bbd34b2ba3e90800000000000000
+      internalID: -7045122179868191975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []

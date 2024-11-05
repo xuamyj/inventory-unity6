@@ -190,7 +190,7 @@ public class PlayerController : MonoBehaviour
                 StatusController.instance.OpenInventory(chest.inventoryType);
             }
 
-            /* ---- CHEST ---- */
+            /* ---- CRAFTING ---- */
             if (obj && obj.CompareTag("CraftingStation"))
             {
                 StatusController.instance.OpenCrafting();

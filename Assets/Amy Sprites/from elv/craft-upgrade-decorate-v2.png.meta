@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 290e773d7bf4f44feb04c7b80763c1d5
+guid: 471482cb499ca47449ba0bc728a963c9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7854534320833156138
-    second: day1-wally_0
+      213: 1647191697694886946
+    second: craft-upgrade-decorate-v2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -111,7 +111,29 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: craft-upgrade-decorate-v2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 8
+        width: 200
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22c83123f100cd610800000000000000
+      internalID: 1647191697694886946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []

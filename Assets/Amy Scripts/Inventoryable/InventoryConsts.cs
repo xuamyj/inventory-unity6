@@ -34,6 +34,7 @@ public class InventoryConsts : MonoBehaviour
         itemInfoMap["lemon"] = new ItemInfo("lemon", "Lemon", "Sprite-lemon2");
         itemInfoMap["crocus"] = new ItemInfo("crocus", "Crocus", "Crocus");
         itemInfoMap["clay"] = new ItemInfo("clay", "Clay", "clay_rock");
+        itemInfoMap["rabbitsfoot"] = new ItemInfo("rabbitsfoot", "Rabbit's Foot", "Rabbits_Foot");
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

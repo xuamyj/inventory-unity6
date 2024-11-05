@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f382dbd0cf8344f7dbb779ac270116f2
+guid: df99d801b6d964a91a4e1ca7039b772b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1060328645122279805
-    second: craft-upgrade-decorate_0
+      213: -6479630275929288752
+    second: pot_3-bothluckypurple_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -111,7 +111,29 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: pot_3-bothluckypurple_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 0
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0df4e57389ab316a0800000000000000
+      internalID: -6479630275929288752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []

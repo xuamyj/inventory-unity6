@@ -41,9 +41,9 @@ public class CutsceneController : MonoBehaviour
 
         /* ---- DATA ---- */
         cutsceneInfoMap = new Dictionary<string, CutsceneInfo>();
-        cutsceneInfoMap["clerk"] = new CutsceneInfo("clerk", "Clerk", "day1-clerk");
-        cutsceneInfoMap["wally"] = new CutsceneInfo("wally", "Wally", "day1-wally");
-        cutsceneInfoMap["eat"] = new CutsceneInfo("eat", "Eat", "town1-bg");
+        cutsceneInfoMap["clerk"] = new CutsceneInfo("clerk", "Clerk", "cutscene/day1-clerk");
+        cutsceneInfoMap["wally"] = new CutsceneInfo("wally", "Wally", "cutscene/day1-wally");
+        cutsceneInfoMap["eat"] = new CutsceneInfo("eat", "Eat", "cutscene/town1-bg");
     }
 
     // const cutscene key - script name - background name

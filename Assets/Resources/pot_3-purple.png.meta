@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: fe56fdf08904a4d879aaea7587fccc06
+guid: fd8cb250872ec4fd9b3a1971d626551c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3674393141351813261
-    second: craft-only_0
+      213: -7112471084268129573
+    second: pot_3-purple_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -111,7 +111,29 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: pot_3-purple_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 0
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd2f5fa7b3d6b4d90800000000000000
+      internalID: -7112471084268129573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []

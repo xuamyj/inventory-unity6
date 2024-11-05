@@ -17,6 +17,10 @@ public class PlayerController : MonoBehaviour
     float horizontal;
     float vertical;
 
+    /* ---- ANIMATION ---- */
+    Animator animator;
+    Vector2 moveDirection = new Vector2(0, -0.01f);
+
     /* ---- RIGHT CLICK ---- */
     public InputAction MouseRightAction;
     public GameObject interactColliderObj; // DRAGGED
@@ -38,6 +42,9 @@ public class PlayerController : MonoBehaviour
         RightAction.Enable();
 
         rigidbody2d = GetComponent<Rigidbody2D>();
+
+        /* ---- ANIMATION ---- */
+        animator = GetComponent<Animator>();
 
         /* ---- RIGHT CLICK ---- */
         MouseRightAction.Enable();
@@ -85,6 +92,22 @@ public class PlayerController : MonoBehaviour
                 vertical = speed;
             }
             // UnityEngine.Debug.Log("keyboard vertical: " + vertical);
+
+            /* ---- ANIMATION ---- */
+            if (!Mathf.Approximately(horizontal, 0.0f) || !Mathf.Approximately(vertical, 0.0f))
+            {
+                moveDirection.Set(horizontal, vertical);
+                // moveDirection.Normalize();
+            }
+            float magnitude = new Vector2(horizontal, vertical).magnitude;
+
+            UnityEngine.Debug.Log("moveDirection " + moveDirection);
+            UnityEngine.Debug.Log("magnitude " + magnitude);
+
+            animator.SetFloat("LookX", moveDirection.x);
+            animator.SetFloat("LookY", moveDirection.y);
+            animator.SetFloat("Speed", magnitude);
+
         }
         else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Inventory_InWorld)
         {

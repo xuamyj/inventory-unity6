@@ -10,6 +10,7 @@ TagManager:
   - Water
   - Waterable
   - CutsceneStarter
+  - CraftingStation
   layers:
   - Default
   - TransparentFX

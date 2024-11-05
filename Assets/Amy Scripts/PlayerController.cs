@@ -101,8 +101,8 @@ public class PlayerController : MonoBehaviour
             }
             float magnitude = new Vector2(horizontal, vertical).magnitude;
 
-            UnityEngine.Debug.Log("moveDirection " + moveDirection);
-            UnityEngine.Debug.Log("magnitude " + magnitude);
+            // UnityEngine.Debug.Log("moveDirection " + moveDirection);
+            // UnityEngine.Debug.Log("magnitude " + magnitude);
 
             animator.SetFloat("LookX", moveDirection.x);
             animator.SetFloat("LookY", moveDirection.y);
@@ -188,6 +188,12 @@ public class PlayerController : MonoBehaviour
             {
                 ChestController chest = obj.GetComponent<ChestController>();
                 StatusController.instance.OpenInventory(chest.inventoryType);
+            }
+
+            /* ---- CHEST ---- */
+            if (obj && obj.CompareTag("CraftingStation"))
+            {
+                StatusController.instance.OpenCrafting();
             }
 
             /* ---- DIALOGUE ---- */

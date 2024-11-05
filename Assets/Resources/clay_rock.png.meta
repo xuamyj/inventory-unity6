@@ -1,17 +1,10 @@
 fileFormatVersion: 2
-guid: de9a90c6bb887a042999560450f2ec1a
-AssetOrigin:
-  serializedVersion: 1
-  productId: 212921
-  packageName: 2D RPG topdown tilesets - pixelart assets FULL BUNDLE
-  packageVersion: 3.1.0
-  assetPath: Assets/Gif/Super_Retro_Collection/Resources/Prefabs/Rocks/Sprites/rock_04.png
-  uploadId: 700102
+guid: fb4aab13b964b40f89c35e86610ead26
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6675366878312568870
-    second: rock_04_0
+      213: 198832050078590247
+    second: clay_rock_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -56,8 +49,8 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 7
-  spritePivot: {x: 0.5, y: 0}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -118,13 +111,35 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: clay_rock_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 725a5e232b462c200800000000000000
+      internalID: 198832050078590247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []

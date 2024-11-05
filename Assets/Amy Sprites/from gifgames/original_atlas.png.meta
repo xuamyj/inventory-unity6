@@ -17314,6 +17314,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: clay_rock
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 993
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d89031857fc1410b9c82ac1d3767298
+      internalID: 324715036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -17328,6 +17350,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      clay_rock: 324715036
       display_cabinet: -1472952224
       light_chair: -959207394
       long_table: -388367627

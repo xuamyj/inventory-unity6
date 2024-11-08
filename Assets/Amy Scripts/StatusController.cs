@@ -53,12 +53,18 @@ public class StatusController : MonoBehaviour
         Display,
         Selling
     }
-    public enum CraftingType
+    public enum CraftingElemType
     {
         Kiln, // clay + water + heat = pottery
-        Stove, // carrot (or flour) + water + heat = food
-        Infuser, // lemon + garlic + water + magic = vulnerary
-        Papermachine, // wood (pulp) + water + magic = tome 
+        // Stove, // carrot (or flour) + water + heat = food
+        // Infuser, // lemon + garlic + water + magic = vulnerary
+        // Papermachine, // wood (pulp) + water + magic = tome 
+    }
+    public enum CraftingSizeType
+    {
+        Simple,
+        DecorOnly,
+        UpgradeDecor,
     }
 
     /* ---- VARIABLES (FIELDS) ---- */
@@ -74,7 +80,9 @@ public class StatusController : MonoBehaviour
     [SerializeField] private BigStatus bigStatus;
     [SerializeField] private LittleStatus littleStatus; // only relevant if BigStatus == InWorld
     private InventoryType currInventoryType; // only relevant if LittleStatus = Inventory_InWorld
-    private CraftingType currCraftingType; // only relevant if only relevant if LittleStatus = Crafting_InWorld
+    private CraftingElemType currCraftingElemType; // these 2 only relevant if LittleStatus = Crafting_InWorld
+    private CraftingSizeType currCraftingSizeType;
+    private bool craftOrInvMouseCarrying;
 
     /* ---- UI: DRAGGED ---- */
     public GameObject gameSavedScreen;
@@ -83,10 +91,12 @@ public class StatusController : MonoBehaviour
     public GameObject storageInventoryUI;
     public GameObject displayInventoryUI;
     public GameObject sellingInventoryUI;
-    public GameObject personalInventoryUI; // these 3 are part of inWorldScreen
+    public GameObject personalInventoryUI; // these 6 are part of inWorldScreen
     public GameObject waterUI;
     public TextMeshProUGUI energyTextUI;
-    public GameObject craftingUI;
+    public GameObject simpleCraftingUI;
+    public GameObject decorOnlyCraftingUI;
+    public GameObject upgradeDecorCraftingUI;
     /* ---- YARN: DRAGGED ---- */
     public DialogueRunner yarnRunner;
     public GameObject cutsceneObj;
@@ -111,7 +121,9 @@ public class StatusController : MonoBehaviour
             {"MN", 0}, // Malcolm - Nadira
         };
         currInventoryType = InventoryType.Storage; // we'll say this one is default for now
-        currCraftingType = CraftingType.Kiln; // we'll say this one is default for now
+        currCraftingElemType = CraftingElemType.Kiln; // we'll say these 2 are default for now
+        currCraftingSizeType = CraftingSizeType.Simple;
+        craftOrInvMouseCarrying = false;
 
         /* ---- GAME START ---- */
         currWater = 0;
@@ -134,7 +146,9 @@ public class StatusController : MonoBehaviour
         storageInventoryUI.gameObject.SetActive(false);
         displayInventoryUI.gameObject.SetActive(false);
         sellingInventoryUI.gameObject.SetActive(false);
-        craftingUI.gameObject.SetActive(false);
+        simpleCraftingUI.gameObject.SetActive(false);
+        decorOnlyCraftingUI.gameObject.SetActive(false);
+        upgradeDecorCraftingUI.gameObject.SetActive(false);
     }
 
     public void BigToGameSavedScreen()
@@ -246,22 +260,50 @@ public class StatusController : MonoBehaviour
         }
     }
 
-    /* ---- CRAFTING ---- */
-    public void OpenCrafting()
+    /* ---- CRAFTING ---- */ // note to self: type, data, init, get/set
+    public (CraftingElemType, CraftingSizeType) GetCraftingType()
+    {
+        return (currCraftingElemType, currCraftingSizeType);
+    }
+    public void SetCraftingType(CraftingElemType elemT, CraftingSizeType sizeT)
+    {
+        currCraftingElemType = elemT;
+        currCraftingSizeType = sizeT;
+    }
+
+    public bool GetMouseCarryingBool()
+    {
+        return craftOrInvMouseCarrying;
+    }
+    public void SetMouseCarryingBool(bool isCarrying)
+    {
+        craftOrInvMouseCarrying = isCarrying;
+    }
+
+    public void OpenCrafting(CraftingElemType elemT, CraftingSizeType sizeT)
     {
         if (bigStatus == BigStatus.InWorld && littleStatus == LittleStatus.Default_InWorld) // open crafting
         {
             // Status
             littleStatus = LittleStatus.Crafting_InWorld;
+            SetCraftingType(elemT, sizeT);
 
             // UI
-            if (currCraftingType == CraftingType.Kiln)
+            if (currCraftingSizeType == CraftingSizeType.Simple)
             {
-                craftingUI.gameObject.SetActive(true);
+                simpleCraftingUI.gameObject.SetActive(true);
+            }
+            else if (currCraftingSizeType == CraftingSizeType.DecorOnly)
+            {
+                decorOnlyCraftingUI.gameObject.SetActive(true);
+            }
+            else if (currCraftingSizeType == CraftingSizeType.UpgradeDecor)
+            {
+                upgradeDecorCraftingUI.gameObject.SetActive(true);
             }
             else
             {
-                UnityEngine.Debug.Log("ERROR: StatusController.cs > OpenCrafting > something wrong with CraftingType");
+                UnityEngine.Debug.Log("ERROR: StatusController.cs > OpenCrafting > something wrong with CraftingSizeType");
             }
         }
         else
@@ -277,13 +319,21 @@ public class StatusController : MonoBehaviour
             littleStatus = LittleStatus.Default_InWorld;
 
             // UI
-            if (currCraftingType == CraftingType.Kiln)
+            if (currCraftingSizeType == CraftingSizeType.Simple)
             {
-                craftingUI.gameObject.SetActive(false);
+                simpleCraftingUI.gameObject.SetActive(false);
+            }
+            else if (currCraftingSizeType == CraftingSizeType.DecorOnly)
+            {
+                decorOnlyCraftingUI.gameObject.SetActive(false);
+            }
+            else if (currCraftingSizeType == CraftingSizeType.UpgradeDecor)
+            {
+                upgradeDecorCraftingUI.gameObject.SetActive(false);
             }
             else
             {
-                UnityEngine.Debug.Log("ERROR: StatusController.cs > CloseCrafting > something wrong with CraftingType");
+                UnityEngine.Debug.Log("ERROR: StatusController.cs > OpenCrafting > something wrong with CraftingSizeType");
             }
         }
         else

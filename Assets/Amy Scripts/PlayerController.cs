@@ -193,7 +193,8 @@ public class PlayerController : MonoBehaviour
             /* ---- CRAFTING ---- */
             if (obj && obj.CompareTag("CraftingStation"))
             {
-                StatusController.instance.OpenCrafting();
+                TorchController torch = obj.GetComponent<TorchController>();
+                StatusController.instance.OpenCrafting(torch.craftingElemType, torch.craftingSizeType);
             }
 
             /* ---- DIALOGUE ---- */

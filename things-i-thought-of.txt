@@ -12,6 +12,10 @@ omg need duplicates :O
 
 create actual consquence for running out of energy (possibly new screen)
 
+De:
+code review for crafting?
+some of these "Controller"s should actually be "Info"s i think. but 1 how to refactor, 2 will i have to 'redrag'/retype everything
+
 --
 
 (aesth)

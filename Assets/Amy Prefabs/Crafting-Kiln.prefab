@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 4998738354042629264}
   - component: {fileID: 5302934401661762799}
   - component: {fileID: 4894843600276766419}
+  - component: {fileID: 5687145649781047305}
   m_Layer: 0
   m_Name: anim
   m_TagString: CraftingStation
@@ -282,3 +283,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.63, y: 0.38}
   m_EdgeRadius: 0
+--- !u!114 &5687145649781047305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8860708073121405724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c70439c2f1f2b4180b83c47c7dfe0c91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  craftingElemType: 0
+  craftingSizeType: 0

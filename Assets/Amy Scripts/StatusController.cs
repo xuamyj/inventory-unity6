@@ -318,6 +318,8 @@ public class StatusController : MonoBehaviour
             // Status
             littleStatus = LittleStatus.Default_InWorld;
 
+            // TODO: move your ingredients and outputs back to your personalinventory!
+
             // UI
             if (currCraftingSizeType == CraftingSizeType.Simple)
             {

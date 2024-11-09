@@ -2381,10 +2381,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Decorate
       objectReference: {fileID: 0}
-    - target: {fileID: 2914507592494404883, guid: fc78446eedfc94106a1d4c6bf44ffc5a, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: df99d801b6d964a91a4e1ca7039b772b, type: 3}
     - target: {fileID: 5754400904137979474, guid: fc78446eedfc94106a1d4c6bf44ffc5a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2898,9 +2894,10 @@ GameObject:
   - component: {fileID: 653778113}
   - component: {fileID: 653778115}
   - component: {fileID: 653778114}
+  - component: {fileID: 653778116}
   m_Layer: 5
   m_Name: Result2 Image
-  m_TagString: Untagged
+  m_TagString: ClickMovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2962,6 +2959,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 653778112}
   m_CullTransparentMesh: 1
+--- !u!114 &653778116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653778112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotName: 15
 --- !u!1 &664152591
 GameObject:
   m_ObjectHideFlags: 0
@@ -2980,7 +2990,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &664152592
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4730,9 +4740,10 @@ GameObject:
   - component: {fileID: 1279837477}
   - component: {fileID: 1279837479}
   - component: {fileID: 1279837478}
+  - component: {fileID: 1279837480}
   m_Layer: 5
   m_Name: UpgradeIngredient1 Image
-  m_TagString: Untagged
+  m_TagString: ClickMovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4794,6 +4805,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1279837476}
   m_CullTransparentMesh: 1
+--- !u!114 &1279837480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279837476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotName: 13
 --- !u!1001 &1286082549
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5163,9 +5187,10 @@ GameObject:
   - component: {fileID: 1388498667}
   - component: {fileID: 1388498669}
   - component: {fileID: 1388498668}
+  - component: {fileID: 1388498670}
   m_Layer: 5
   m_Name: UpgradeIngredient2 Image
-  m_TagString: Untagged
+  m_TagString: ClickMovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5227,6 +5252,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1388498666}
   m_CullTransparentMesh: 1
+--- !u!114 &1388498670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1388498666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotName: 14
 --- !u!1 &1464654933
 GameObject:
   m_ObjectHideFlags: 0
@@ -8647,7 +8685,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &3081954063897052743
 GameObject:
   m_ObjectHideFlags: 0

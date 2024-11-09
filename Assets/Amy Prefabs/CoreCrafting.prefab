@@ -161,9 +161,10 @@ GameObject:
   - component: {fileID: 6699410313989746751}
   - component: {fileID: 944502245715734837}
   - component: {fileID: 6426019682436525640}
+  - component: {fileID: 7324195255498031608}
   m_Layer: 5
   m_Name: Result1 Image
-  m_TagString: Untagged
+  m_TagString: ClickMovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -225,6 +226,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7324195255498031608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1518626520915161374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotName: 12
 --- !u!1 &2408359397737777468
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,9 +250,10 @@ GameObject:
   - component: {fileID: 4334743227350145012}
   - component: {fileID: 8223655835421644728}
   - component: {fileID: 2736810380539521590}
+  - component: {fileID: 7236172032004856230}
   m_Layer: 5
   m_Name: Ingredient2 Image
-  m_TagString: Untagged
+  m_TagString: ClickMovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -300,6 +315,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7236172032004856230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2408359397737777468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotName: 11
 --- !u!1 &5920296034245985650
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,9 +455,10 @@ GameObject:
   - component: {fileID: 6840401782113803351}
   - component: {fileID: 2248037299411430688}
   - component: {fileID: 5803645407087344605}
+  - component: {fileID: 6480157342763387593}
   m_Layer: 5
   m_Name: Ingredient1 Image
-  m_TagString: Untagged
+  m_TagString: ClickMovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -491,3 +520,16 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6480157342763387593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6746589832560652090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotName: 10

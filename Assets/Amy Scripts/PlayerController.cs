@@ -280,7 +280,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Dialogue_InWorld)
         {
-            UnityEngine.Debug.Log("stuck in here?");
+
         }
     }
 }

@@ -1,4 +1,6 @@
 
+IMPORTANT: move your things in crafting back to the inventory!
+
 dialogue:
 isadora conversation reduce 3 silver coins / add 1 support pt (and possibly be slightly different if replay)
 advance dialogue when click anywhere, not just Continue

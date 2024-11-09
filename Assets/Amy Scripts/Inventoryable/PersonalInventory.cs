@@ -40,8 +40,10 @@ public class PersonalInventory : MonoBehaviour
         {
             if (realSlots[i] == null)
             {
+                /* ---- DATA ---- */
                 realSlots[i] = itemKey;
 
+                /* ---- UI ---- */
                 ItemInfo item = InventoryConsts.instance.itemInfoMap[itemKey];
                 string spriteUrl = item.spriteUrl;
                 UnityEngine.UI.Image img = visibleSlots[i].GetComponent<UnityEngine.UI.Image>();

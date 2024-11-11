@@ -922,6 +922,7 @@ RectTransform:
   - {fileID: 527098465}
   - {fileID: 1065194288}
   - {fileID: 1978716218}
+  - {fileID: 356274112078780087}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2971,7 +2972,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 15
+  slotName: 6
+  personalIndex: 0
 --- !u!1 &664152591
 GameObject:
   m_ObjectHideFlags: 0
@@ -3066,6 +3068,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   craftingElemType: 0
   craftingSizeType: 2
+  personalInventory: {fileID: 1703971490}
   waterEmptyImg: {fileID: 1898462044817064722}
   waterFullImg: {fileID: 1898462044817064721}
   ingredient1Slot: {fileID: 1898462044817064720}
@@ -4817,7 +4820,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 13
+  slotName: 4
+  personalIndex: 0
 --- !u!1001 &1286082549
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5264,7 +5268,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 14
+  slotName: 5
+  personalIndex: 0
 --- !u!1 &1464654933
 GameObject:
   m_ObjectHideFlags: 0
@@ -5562,6 +5567,7 @@ MonoBehaviour:
   simpleCraftingUI: {fileID: 2976467483982202847}
   decorOnlyCraftingUI: {fileID: 1579280774}
   upgradeDecorCraftingUI: {fileID: 664152591}
+  mouseCarryingImageUI: {fileID: 4940102075972906334}
   yarnRunner: {fileID: 173490377}
   cutsceneObj: {fileID: 85576742}
   oneoffChair: {fileID: 8132620744370920121}
@@ -6059,6 +6065,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   craftingElemType: 0
   craftingSizeType: 1
+  personalInventory: {fileID: 1703971490}
   waterEmptyImg: {fileID: 1198345465}
   waterFullImg: {fileID: 1198345464}
   ingredient1Slot: {fileID: 1198345463}
@@ -6362,6 +6369,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7188502617375488231, guid: 86797614aa8724fd7946a0e660b06d03, type: 3}
   m_PrefabInstance: {fileID: 7345570159565580878}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1703971490 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3088748866936952606, guid: 86797614aa8724fd7946a0e660b06d03, type: 3}
+  m_PrefabInstance: {fileID: 7345570159565580878}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703971488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b69a9dfe8a541d8be8a452a2bdaffa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1705595343
 GameObject:
   m_ObjectHideFlags: 0
@@ -7837,6 +7855,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7799990079101631669}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &356274112078780087
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459517634742428576}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.05, y: 1.05, z: 1.05}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 61442433}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -600, y: 0}
+  m_SizeDelta: {x: 48, y: 48}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &419206659180961126
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7892,6 +7929,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!1 &459517634742428576
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 356274112078780087}
+  - component: {fileID: 969485128970706631}
+  - component: {fileID: 4940102075972906334}
+  - component: {fileID: 4940102075972906335}
+  m_Layer: 5
+  m_Name: MouseCarrying Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &882193297785541300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7949,6 +8005,14 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af1ddc3e1abf447339bccd957808e50e, type: 3}
+--- !u!222 &969485128970706631
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459517634742428576}
+  m_CullTransparentMesh: 1
 --- !u!1001 &1183920222332222469
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9273,6 +9337,49 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.57, y: 0.63}
   m_EdgeRadius: 0
+--- !u!114 &4940102075972906334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459517634742428576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: ae4f940b9c9a447cb858fc1a8e497158, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4940102075972906335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459517634742428576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d696b70b344e741448670c94d3829466, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 61442432}
 --- !u!222 &5069004879543817061
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10465,6 +10572,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   craftingElemType: 0
   craftingSizeType: 0
+  personalInventory: {fileID: 1703971490}
   waterEmptyImg: {fileID: 2436511786301372520}
   waterFullImg: {fileID: 2436511786301372519}
   ingredient1Slot: {fileID: 2436511786301372518}

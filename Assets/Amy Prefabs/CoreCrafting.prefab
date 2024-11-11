@@ -238,7 +238,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 12
+  slotName: 3
+  personalIndex: 0
 --- !u!1 &2408359397737777468
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,7 +328,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 11
+  slotName: 2
+  personalIndex: 0
 --- !u!1 &5920296034245985650
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,4 +534,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 10
+  slotName: 1
+  personalIndex: 0

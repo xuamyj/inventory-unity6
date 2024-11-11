@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class ClickMovable : MonoBehaviour
+public class ClickMovable : MonoBehaviour, IPointerClickHandler
 {
-    public CraftingStation.SlotName slotName; // personal_#, or one of the 
+    public CraftingStation.SlotName slotName;
+    public int personalIndex; // only applicable if CraftingStation.SlotName = Personal
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,20 +19,24 @@ public class ClickMovable : MonoBehaviour
     }
 
     // onclick
-    void Something()
+    public void OnPointerClick(PointerEventData eventData)
     {
+        UnityEngine.Debug.Log("OMNOM 1 eventData" + eventData);
+
         (StatusController.BigStatus bigStatus, StatusController.LittleStatus littleStatus) = StatusController.instance.GetStatus();
 
         /* ---- CRAFTING ---- */
         if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Crafting_InWorld)
         {
+            UnityEngine.Debug.Log("OMNOM 2 littleStatus" + littleStatus);
+
             if (StatusController.instance.GetMouseCarryingBool() == false) // not holding anything
             {
-                CraftingStation.instance.TryPickupThing(slotName);
+                CraftingStation.instance.TryPickupThing(eventData, slotName, personalIndex);
             }
             else // holding something already
             {
-                CraftingStation.instance.TryPutThing(slotName);
+                CraftingStation.instance.TryPutThing(eventData, slotName, personalIndex);
             }
         }
         /* ---- CHEST ---- */

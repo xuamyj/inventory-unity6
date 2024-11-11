@@ -236,6 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotName: 0
+  personalIndex: 0
 --- !u!1001 &3766392857849216559
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -362,7 +363,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 4
+  slotName: 0
+  personalIndex: 4
 --- !u!1001 &4337704950479894975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -489,7 +491,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 2
+  slotName: 0
+  personalIndex: 2
 --- !u!1001 &5654892972576331133
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -611,7 +614,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 7
+  slotName: 0
+  personalIndex: 7
 --- !u!224 &5371539091501610883 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 356274110907556606, guid: ef95a9f7c50ec41f2a841246038f3491, type: 3}
@@ -743,7 +747,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 5
+  slotName: 0
+  personalIndex: 5
 --- !u!1001 &7877137062910757582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -870,7 +875,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 1
+  slotName: 0
+  personalIndex: 1
 --- !u!1001 &8394741721731649350
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -997,7 +1003,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 8
+  slotName: 0
+  personalIndex: 8
 --- !u!1001 &8431589245002221559
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1124,7 +1131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 6
+  slotName: 0
+  personalIndex: 6
 --- !u!1001 &9063528043357921713
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1251,7 +1259,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 3
+  slotName: 0
+  personalIndex: 3
 --- !u!1001 &9163461632402455912
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1373,7 +1382,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 9
+  slotName: 0
+  personalIndex: 9
 --- !u!224 &8924615655636131734 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 356274110907556606, guid: ef95a9f7c50ec41f2a841246038f3491, type: 3}

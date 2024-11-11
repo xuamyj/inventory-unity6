@@ -83,6 +83,7 @@ public class StatusController : MonoBehaviour
     private CraftingElemType currCraftingElemType; // these 2 only relevant if LittleStatus = Crafting_InWorld
     private CraftingSizeType currCraftingSizeType;
     private bool craftOrInvMouseCarrying;
+    private string itemKeyMouseCarrying;
 
     /* ---- UI: DRAGGED ---- */
     public GameObject gameSavedScreen;
@@ -97,6 +98,7 @@ public class StatusController : MonoBehaviour
     public GameObject simpleCraftingUI;
     public GameObject decorOnlyCraftingUI;
     public GameObject upgradeDecorCraftingUI;
+    public UnityEngine.UI.Image mouseCarryingImageUI;
     /* ---- YARN: DRAGGED ---- */
     public DialogueRunner yarnRunner;
     public GameObject cutsceneObj;
@@ -275,9 +277,19 @@ public class StatusController : MonoBehaviour
     {
         return craftOrInvMouseCarrying;
     }
-    public void SetMouseCarryingBool(bool isCarrying)
+    public string GetMouseCarryingItemKey()
     {
-        craftOrInvMouseCarrying = isCarrying;
+        return itemKeyMouseCarrying;
+    }
+    public void StartMouseCarrying(string itemKey)
+    {
+        craftOrInvMouseCarrying = true;
+        itemKeyMouseCarrying = itemKey;
+    }
+    public void StopMouseCarrying()
+    {
+        craftOrInvMouseCarrying = false;
+        itemKeyMouseCarrying = "";
     }
 
     public void OpenCrafting(CraftingElemType elemT, CraftingSizeType sizeT)

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class CraftingStation : MonoBehaviour
@@ -12,7 +13,8 @@ public class CraftingStation : MonoBehaviour
     private Dictionary<SlotName, string> slotNameToItemKey;
 
     /* ---- UI: DRAGGED ---- */
-    // public List<GameObject> visibleSlots;
+    public PersonalInventory personalInventory;
+
     public GameObject waterEmptyImg;
     public GameObject waterFullImg;
     public GameObject ingredient1Slot; // these + below can be clicked
@@ -27,16 +29,7 @@ public class CraftingStation : MonoBehaviour
     /* ---- CONSTANTS ---- */
     public enum SlotName
     {
-        Personal_0,
-        Personal_1,
-        Personal_2,
-        Personal_3,
-        Personal_4,
-        Personal_5,
-        Personal_6,
-        Personal_7,
-        Personal_8,
-        Personal_9,
+        Personal,
         Ingredient1Key,
         Ingredient2Key,
         SimpleResultKey,
@@ -77,8 +70,25 @@ public class CraftingStation : MonoBehaviour
 
     }
 
-    public bool TryPickupThing(CraftingStation.SlotName slotName)
+    // private helper function
+    string LookupItemKey(CraftingStation.SlotName slotName, int personalIndex)
     {
+        string itemKey = "";
+        if (slotName == SlotName.Personal)
+        {
+            itemKey = personalInventory.GetItemKeyFromIndex(personalIndex);
+        }
+        else
+        {
+            itemKey = slotNameToItemKey[slotName];
+        }
+        return itemKey;
+    }
+
+    public bool TryPickupThing(PointerEventData eventData, CraftingStation.SlotName slotName, int personalIndex)
+    {
+        UnityEngine.Debug.Log("OMNOM 3 slotName" + slotName);
+
         // repeat status check
         (StatusController.BigStatus bigStatus, StatusController.LittleStatus littleStatus) = StatusController.instance.GetStatus();
 
@@ -88,16 +98,35 @@ public class CraftingStation : MonoBehaviour
             return false;
         }
 
+        // Blank square
+        string itemKey = LookupItemKey(slotName, personalIndex);
+        if (itemKey == "")
+        {
+            UnityEngine.Debug.Log("Clicked on blank square, do nothing");
+            return false;
+        }
+
         // Data
+        if (slotName == SlotName.Personal) // lock the item, "ToPut" happens at the end
+        {
+            personalInventory.LockIndex(personalIndex);
+        }
+        else { } // "ToPut" happens at the end, empty on purpose 
+
+        UnityEngine.Debug.Log("OMNOM 4 made it here itemKey" + itemKey);
 
         // UI
+        // change image..
+        string spriteUrl = InventoryConsts.instance.itemInfoMap[itemKey].spriteUrl;
+        StatusController.instance.mouseCarryingImageUI.sprite = Resources.Load<Sprite>(spriteUrl);
+        // move position to mouse + get it to follow = both are in MouseCarryingController.cs
 
         // set status: if it got here, it worked
-        StatusController.instance.SetMouseCarryingBool(true);
+        StatusController.instance.StartMouseCarrying(itemKey);
         return true;
     }
 
-    public bool TryPutThing(CraftingStation.SlotName slotName)
+    public bool TryPutThing(PointerEventData eventData, CraftingStation.SlotName slotName, int personalIndex)
     {
         // repeat status check
         (StatusController.BigStatus bigStatus, StatusController.LittleStatus littleStatus) = StatusController.instance.GetStatus();
@@ -108,12 +137,21 @@ public class CraftingStation : MonoBehaviour
             return false;
         }
 
+        // Occupied square
+        string itemKey = LookupItemKey(slotName, personalIndex);
+        if (itemKey != "")
+        {
+            UnityEngine.Debug.Log("Clicked on occupied square, do nothing");
+            return false;
+        }
+
         // Data
+
 
         // UI
 
         // set status: if it got here, it worked
-        StatusController.instance.SetMouseCarryingBool(false);
+        StatusController.instance.StopMouseCarrying();
         return true;
     }
 }

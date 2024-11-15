@@ -20,11 +20,11 @@ public class CraftingStation : MonoBehaviour
     public GameObject ingredient1Slot; // these + below can be clicked
     public GameObject ingredient2Slot;
     public GameObject simpleResultSlot;
+    public GameObject decorIngrSlot;
+    public GameObject decorResultSlot;
     public GameObject upgradeIngr1Slot; // these + below can be null!
     public GameObject upgradeIngr2Slot;
     public GameObject upgradeResultSlot;
-    public GameObject decorIngrSlot;
-    public GameObject decorResultSlot;
 
     /* ---- CONSTANTS ---- */
     public enum SlotName
@@ -33,11 +33,11 @@ public class CraftingStation : MonoBehaviour
         Ingredient1Key,
         Ingredient2Key,
         SimpleResultKey,
+        DecorIngrKey,
+        DecorResultKey,
         UpgradeIngr1Key,
         UpgradeIngr2Key,
         UpgradeResultKey,
-        DecorIngrKey,
-        DecorResultKey,
     }
 
     /* ---- STATIC ---- */
@@ -51,11 +51,11 @@ public class CraftingStation : MonoBehaviour
         slotNameToItemKey[SlotName.Ingredient1Key] = "";
         slotNameToItemKey[SlotName.Ingredient2Key] = "";
         slotNameToItemKey[SlotName.SimpleResultKey] = "";
+        slotNameToItemKey[SlotName.DecorIngrKey] = "";
+        slotNameToItemKey[SlotName.DecorResultKey] = "";
         slotNameToItemKey[SlotName.UpgradeIngr1Key] = "";
         slotNameToItemKey[SlotName.UpgradeIngr2Key] = "";
         slotNameToItemKey[SlotName.UpgradeResultKey] = "";
-        slotNameToItemKey[SlotName.DecorIngrKey] = "";
-        slotNameToItemKey[SlotName.DecorResultKey] = "";
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -83,6 +83,39 @@ public class CraftingStation : MonoBehaviour
             itemKey = slotNameToItemKey[slotName];
         }
         return itemKey;
+    }
+
+    // private helper function
+    bool IsValidSlot(string carryingItemKey, CraftingStation.SlotName slotName, int personalIndex)
+    {
+        ItemInfo item = InventoryConsts.instance.itemInfoMap[carryingItemKey];
+        if (slotName == SlotName.Personal)
+        {
+            return true;
+        }
+        if (item.isRaw &&
+            (slotName == SlotName.Ingredient1Key
+            || slotName == SlotName.Ingredient2Key
+            || slotName == SlotName.DecorIngrKey
+            || slotName == SlotName.UpgradeIngr1Key
+            || slotName == SlotName.UpgradeIngr2Key))
+        {
+            return true;
+        }
+        // if ((slotName == SlotName.SimpleResultKey) && ())
+        // {
+
+        // }
+        // if ((slotName == SlotName.DecorResultKey) && ())
+        // {
+
+        // }
+        // if ((slotName == SlotName.UpgradeResultKey) && ())
+        // {
+
+        // }
+
+        return false;
     }
 
     public bool TryPickupThing(PointerEventData eventData, CraftingStation.SlotName slotName, int personalIndex)
@@ -137,18 +170,34 @@ public class CraftingStation : MonoBehaviour
             return false;
         }
 
-        // Occupied square
-        string itemKey = LookupItemKey(slotName, personalIndex);
-        if (itemKey != "")
-        {
-            UnityEngine.Debug.Log("Clicked on occupied square, do nothing");
+        string carryingItemKey = StatusController.instance.GetMouseCarryingItemKey();
+        string destItemKey = LookupItemKey(slotName, personalIndex);
+
+        if (carryingItemKey == destItemKey && personalInventory.GetLockedIndexes().Contains(personalIndex))
+        { // orig locked: put it back
+
+            // Data
+
+            // UI
+        }
+        else if (destItemKey != "")
+        { // occupied: do nothing
+            UnityEngine.Debug.Log("Clicked on blank square, do nothing");
             return false;
         }
+        else if (!IsValidSlot(carryingItemKey, slotName, personalIndex))
+        { // not legal place: do nothing
+            UnityEngine.Debug.Log("Clicked on blank square, do nothing");
+            return false;
+        }
+        else
+        { // valid blank square: put 
 
-        // Data
+            // Data
 
+            // UI
 
-        // UI
+        }
 
         // set status: if it got here, it worked
         StatusController.instance.StopMouseCarrying();

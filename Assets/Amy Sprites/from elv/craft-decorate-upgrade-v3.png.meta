@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c392c4ad045ec421090530e9b122b948
+guid: 67098e1f59e2541ed8419bb0972373c8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7045122179868191975
-    second: craft-only-v2 1_0
+      213: -7371450475731236588
+    second: craft-decorate-upgrade-v3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,12 +113,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: craft-only-v2 1_0
+      name: craft-decorate-upgrade-v3_0
       rect:
         serializedVersion: 2
         x: 0
         y: 8
-        width: 114
+        width: 201
         height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9131bbd34b2ba3e90800000000000000
-      internalID: -7045122179868191975
+      spriteID: 419c7a219d853b990800000000000000
+      internalID: -7371450475731236588
       vertices: []
       indices: 
       edges: []

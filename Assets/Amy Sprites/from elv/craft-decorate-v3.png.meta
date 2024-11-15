@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 75fa41ab5a57c487e97a8583e146e3a7
+guid: 05ff48dc6b5fc496888a9bfa30ff2cf8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4101393466441865758
-    second: craft-decorate-v2_0
+      213: -7656082224910306663
+    second: craft-decorate-v3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: craft-decorate-v2_0
+      name: craft-decorate-v3_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e1a106ba0a31be830800000000000000
-      internalID: 4101393466441865758
+      spriteID: 992f905b7c120c590800000000000000
+      internalID: -7656082224910306663
       vertices: []
       indices: 
       edges: []

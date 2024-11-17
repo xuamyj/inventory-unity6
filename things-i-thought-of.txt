@@ -1,4 +1,6 @@
 
+for bigger boxes how to get the clickable to be the full box without stretching image?
+gray and ungray personalInventory image
 IMPORTANT: move your things in crafting back to the inventory!
 
 dialogue:

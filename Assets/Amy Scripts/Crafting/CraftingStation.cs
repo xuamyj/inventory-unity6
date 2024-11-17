@@ -11,20 +11,24 @@ public class CraftingStation : MonoBehaviour
 
     /* ---- DATA ---- */
     private Dictionary<SlotName, string> slotNameToItemKey;
+    private UnityEngine.Sprite BLANK_SPRITE; // init in Awake() but treat like constant
 
     /* ---- UI: DRAGGED ---- */
     public PersonalInventory personalInventory;
 
     public GameObject waterEmptyImg;
     public GameObject waterFullImg;
-    public GameObject ingredient1Slot; // these + below can be clicked
-    public GameObject ingredient2Slot;
-    public GameObject simpleResultSlot;
-    public GameObject decorIngrSlot;
-    public GameObject decorResultSlot;
-    public GameObject upgradeIngr1Slot; // these + below can be null!
-    public GameObject upgradeIngr2Slot;
-    public GameObject upgradeResultSlot;
+    public UnityEngine.UI.Image ingredient1Slot; // these + below can be clicked
+    public UnityEngine.UI.Image ingredient2Slot;
+    public UnityEngine.UI.Image simpleResultSlot;
+    public UnityEngine.UI.Image decorIngrSlot; // these + below can be null!
+    public UnityEngine.UI.Image decorResultSlot;
+    public UnityEngine.UI.Image upgradeIngr1Slot;
+    public UnityEngine.UI.Image upgradeIngr2Slot;
+    public UnityEngine.UI.Image upgradeResultSlot;
+
+    private Dictionary<SlotName, UnityEngine.UI.Image> slotNameToActualSlot;
+
 
     /* ---- CONSTANTS ---- */
     public enum SlotName
@@ -56,6 +60,33 @@ public class CraftingStation : MonoBehaviour
         slotNameToItemKey[SlotName.UpgradeIngr1Key] = "";
         slotNameToItemKey[SlotName.UpgradeIngr2Key] = "";
         slotNameToItemKey[SlotName.UpgradeResultKey] = "";
+
+        slotNameToActualSlot = new Dictionary<SlotName, UnityEngine.UI.Image>();
+        slotNameToActualSlot[SlotName.Ingredient1Key] = ingredient1Slot;
+        slotNameToActualSlot[SlotName.Ingredient2Key] = ingredient2Slot;
+        slotNameToActualSlot[SlotName.SimpleResultKey] = simpleResultSlot;
+        slotNameToActualSlot[SlotName.DecorIngrKey] = decorIngrSlot;
+        slotNameToActualSlot[SlotName.DecorResultKey] = decorResultSlot;
+        slotNameToActualSlot[SlotName.UpgradeIngr1Key] = upgradeIngr1Slot;
+        slotNameToActualSlot[SlotName.UpgradeIngr2Key] = upgradeIngr2Slot;
+        slotNameToActualSlot[SlotName.UpgradeResultKey] = upgradeResultSlot;
+
+        /* ---- UI ---- */
+        BLANK_SPRITE = Resources.Load<Sprite>(InventoryConsts.BLANK_SPRITE_URL);
+        ingredient1Slot.sprite = BLANK_SPRITE;
+        ingredient2Slot.sprite = BLANK_SPRITE;
+        simpleResultSlot.sprite = BLANK_SPRITE;
+        if (craftingSizeType == StatusController.CraftingSizeType.DecorOnly || craftingSizeType == StatusController.CraftingSizeType.UpgradeDecor)
+        {
+            decorIngrSlot.sprite = BLANK_SPRITE;
+            decorResultSlot.sprite = BLANK_SPRITE;
+        }
+        if (craftingSizeType == StatusController.CraftingSizeType.UpgradeDecor)
+        {
+            upgradeIngr1Slot.sprite = BLANK_SPRITE;
+            upgradeIngr2Slot.sprite = BLANK_SPRITE;
+            upgradeResultSlot.sprite = BLANK_SPRITE;
+        }
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -71,7 +102,7 @@ public class CraftingStation : MonoBehaviour
     }
 
     // private helper function
-    string LookupItemKey(CraftingStation.SlotName slotName, int personalIndex)
+    private string LookupItemKey(CraftingStation.SlotName slotName, int personalIndex)
     {
         string itemKey = "";
         if (slotName == SlotName.Personal)
@@ -86,8 +117,9 @@ public class CraftingStation : MonoBehaviour
     }
 
     // private helper function
-    bool IsValidSlot(string carryingItemKey, CraftingStation.SlotName slotName, int personalIndex)
+    private bool IsValidSlot(string carryingItemKey, CraftingStation.SlotName slotName, int personalIndex)
     {
+        // assume it's an empty slot (already checked in main function)
         ItemInfo item = InventoryConsts.instance.itemInfoMap[carryingItemKey];
         if (slotName == SlotName.Personal)
         {
@@ -102,25 +134,65 @@ public class CraftingStation : MonoBehaviour
         {
             return true;
         }
-        // if ((slotName == SlotName.SimpleResultKey) && ())
-        // {
-
-        // }
-        // if ((slotName == SlotName.DecorResultKey) && ())
-        // {
-
-        // }
-        // if ((slotName == SlotName.UpgradeResultKey) && ())
-        // {
-
-        // }
-
+        if ((slotName == SlotName.SimpleResultKey) && // also ingredient for decor
+            (!item.isRaw && item.canBeDecorated))
+        {
+            return true;
+        }
+        if ((slotName == SlotName.DecorResultKey) && // also ingredient for upgrade
+            (!item.isRaw && item.canBeUpgraded))
+        {
+            return true;
+        }
+        if ((slotName == SlotName.UpgradeResultKey) && // i guess this is storage for crafted item? 
+            !item.isRaw)
+        {
+            return true;
+        }
+        // otherwise, not a valid combo
         return false;
     }
 
+    // private helper-helper function
+    private void CraftingPutDataAndUIHelper(string carryingItemKey, CraftingStation.SlotName slotName)
+    {
+        // Data
+        slotNameToItemKey[slotName] = carryingItemKey;
+
+        // UI
+        ItemInfo item = InventoryConsts.instance.itemInfoMap[carryingItemKey];
+        string spriteUrl = item.spriteUrl;
+        UnityEngine.UI.Image img = slotNameToActualSlot[slotName];
+        img.sprite = Resources.Load<Sprite>(spriteUrl);
+    }
+
+    // private helper function
+    private void PutInValidSlot(string carryingItemKey, CraftingStation.SlotName slotName, int personalIndex)
+    {
+        // PERSONAL SLOT
+        if (slotName == SlotName.Personal)
+        {
+            // Personal controls its own Data & UI
+            // remove from locked slot, add to new slot
+            personalInventory.TryRemoveLockedItem(carryingItemKey);
+            personalInventory.TryAddItemToSpecificSlot(carryingItemKey, personalIndex);
+        }
+        // CRAFTING SLOT
+        else
+        {
+            // Personal controls its own Data & UI
+            // remove from locked Personal slot
+            personalInventory.TryRemoveLockedItem(carryingItemKey);
+
+            // add to Crafting slot
+            CraftingPutDataAndUIHelper(carryingItemKey, slotName);
+        }
+    }
+
+
     public bool TryPickupThing(PointerEventData eventData, CraftingStation.SlotName slotName, int personalIndex)
     {
-        UnityEngine.Debug.Log("OMNOM 3 slotName" + slotName);
+        StatusController.instance.CraftingDebugPrint("OMNOM 3 slotName" + slotName);
 
         // repeat status check
         (StatusController.BigStatus bigStatus, StatusController.LittleStatus littleStatus) = StatusController.instance.GetStatus();
@@ -146,10 +218,12 @@ public class CraftingStation : MonoBehaviour
         }
         else { } // "ToPut" happens at the end, empty on purpose 
 
-        UnityEngine.Debug.Log("OMNOM 4 made it here itemKey" + itemKey);
+        StatusController.instance.CraftingDebugPrint("OMNOM 4 made it here itemKey" + itemKey);
 
         // UI
-        // change image..
+        // gray personalInventory image..
+
+        // change mouseCarrying image..
         string spriteUrl = InventoryConsts.instance.itemInfoMap[itemKey].spriteUrl;
         StatusController.instance.mouseCarryingImageUI.sprite = Resources.Load<Sprite>(spriteUrl);
         // move position to mouse + get it to follow = both are in MouseCarryingController.cs
@@ -173,31 +247,45 @@ public class CraftingStation : MonoBehaviour
         string carryingItemKey = StatusController.instance.GetMouseCarryingItemKey();
         string destItemKey = LookupItemKey(slotName, personalIndex);
 
-        if (carryingItemKey == destItemKey && personalInventory.GetLockedIndexes().Contains(personalIndex))
-        { // orig locked: put it back
+        // OCCUPIED SLOT
+        if (destItemKey != "")
+        {
+            if (carryingItemKey == destItemKey && personalInventory.GetLockedIndexes().Contains(personalIndex))
+            { // orig locked: put it back
 
-            // Data
+                // Data: unlock
+                personalInventory.UnlockIndex(personalIndex);
 
-            // UI
+                // UI
+                // ungray personalInventory image..
+
+                // don't return here! need to finish function
+            }
+            else
+            { // otherwise occupied: do nothing
+                UnityEngine.Debug.Log("Clicked on occupied square, do nothing");
+                return false;
+            }
         }
-        else if (destItemKey != "")
-        { // occupied: do nothing
-            UnityEngine.Debug.Log("Clicked on blank square, do nothing");
-            return false;
-        }
-        else if (!IsValidSlot(carryingItemKey, slotName, personalIndex))
-        { // not legal place: do nothing
-            UnityEngine.Debug.Log("Clicked on blank square, do nothing");
-            return false;
-        }
+        // EMPTY SLOT
         else
-        { // valid blank square: put 
+        {
+            if (IsValidSlot(carryingItemKey, slotName, personalIndex))
+            { // valid blank square: put it there
 
-            // Data
+                // Data + UI
+                PutInValidSlot(carryingItemKey, slotName, personalIndex);
 
-            // UI
-
+                // don't return here! need to finish function
+            }
+            else
+            { // not legal place: do nothing
+                UnityEngine.Debug.Log("Clicked on empty but not valid square, do nothing");
+                return false;
+            }
         }
+        // clear mouseCarrying image..
+        StatusController.instance.mouseCarryingImageUI.sprite = BLANK_SPRITE;
 
         // set status: if it got here, it worked
         StatusController.instance.StopMouseCarrying();

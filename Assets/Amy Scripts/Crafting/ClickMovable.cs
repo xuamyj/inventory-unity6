@@ -21,14 +21,14 @@ public class ClickMovable : MonoBehaviour, IPointerClickHandler
     // onclick
     public void OnPointerClick(PointerEventData eventData)
     {
-        UnityEngine.Debug.Log("OMNOM 1 eventData" + eventData);
+        StatusController.instance.CraftingDebugPrint("OMNOM 1 eventData" + eventData);
 
         (StatusController.BigStatus bigStatus, StatusController.LittleStatus littleStatus) = StatusController.instance.GetStatus();
 
         /* ---- CRAFTING ---- */
         if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Crafting_InWorld)
         {
-            UnityEngine.Debug.Log("OMNOM 2 littleStatus" + littleStatus);
+            StatusController.instance.CraftingDebugPrint("OMNOM 2 littleStatus" + littleStatus);
 
             if (StatusController.instance.GetMouseCarryingBool() == false) // not holding anything
             {

@@ -105,6 +105,8 @@ public class StatusController : MonoBehaviour
 
     /* ---- ONE-OFFS: DRAGGED ---- */
     public OneoffChair oneoffChair;
+    public bool debugPrintCrafting;
+    public bool debugPrintPersonalInventory;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -290,6 +292,21 @@ public class StatusController : MonoBehaviour
     {
         craftOrInvMouseCarrying = false;
         itemKeyMouseCarrying = "";
+    }
+
+    public void CraftingDebugPrint(string text)
+    {
+        if (debugPrintCrafting)
+        {
+            UnityEngine.Debug.Log("CRAFTING_DEBUG: " + text);
+        }
+    }
+    public void PersonalInventoryDebugPrint(string text)
+    {
+        if (debugPrintPersonalInventory)
+        {
+            UnityEngine.Debug.Log("PERSONAL_INVENTORY_DEBUG: " + text);
+        }
     }
 
     public void OpenCrafting(CraftingElemType elemT, CraftingSizeType sizeT)

@@ -27,6 +27,9 @@ public class ItemInfo
 
 public class InventoryConsts : MonoBehaviour
 {
+    /* ---- CONSTS ---- */
+    public const string BLANK_SPRITE_URL = "Sprite-blankobj";
+
     /* ---- DATA, should be used like a const ---- */
     public Dictionary<string, ItemInfo> itemInfoMap;
 

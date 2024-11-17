@@ -217,10 +217,10 @@ public class PlayerController : MonoBehaviour
             /* ---- OBJECT ---- */
             if (obj && obj.CompareTag("Inventoryable"))
             {
-                Inventoryable item = obj.GetComponent<Inventoryable>();
+                ObjInventoryable item = obj.GetComponent<ObjInventoryable>();
                 string itemKey = item.itemKey;
 
-                PersonalInventory personalI = StatusController.instance.personalInventoryUI.GetComponent<PersonalInventory>();
+                MPersonalInventory personalI = StatusController.instance.personalInventoryUI.GetComponent<MPersonalInventory>();
 
                 Destroy(obj);
                 personalI.TryAddItemToEmptySlot(itemKey);

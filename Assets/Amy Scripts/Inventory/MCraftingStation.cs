@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CraftingStation : MonoBehaviour
+public class MCraftingStation : MonoBehaviour
 {
     public StatusController.CraftingElemType craftingElemType;
     public StatusController.CraftingSizeType craftingSizeType;
@@ -14,7 +14,7 @@ public class CraftingStation : MonoBehaviour
     private UnityEngine.Sprite BLANK_SPRITE; // init in Awake() but treat like constant
 
     /* ---- UI: DRAGGED ---- */
-    public PersonalInventory personalInventory;
+    public MPersonalInventory personalInventory;
 
     public GameObject waterEmptyImg;
     public GameObject waterFullImg;
@@ -45,7 +45,7 @@ public class CraftingStation : MonoBehaviour
     }
 
     /* ---- STATIC ---- */
-    public static CraftingStation instance { get; private set; }
+    public static MCraftingStation instance { get; private set; }
     private void Awake()
     {
         instance = this;
@@ -102,7 +102,7 @@ public class CraftingStation : MonoBehaviour
     }
 
     // private helper function
-    private string LookupItemKey(CraftingStation.SlotName slotName, int personalIndex)
+    private string LookupItemKey(MCraftingStation.SlotName slotName, int personalIndex)
     {
         string itemKey = "";
         if (slotName == SlotName.Personal)
@@ -117,7 +117,7 @@ public class CraftingStation : MonoBehaviour
     }
 
     // private helper function
-    private bool IsValidSlot(string carryingItemKey, CraftingStation.SlotName slotName, int personalIndex)
+    private bool IsValidSlot(string carryingItemKey, MCraftingStation.SlotName slotName, int personalIndex)
     {
         // assume it's an empty slot (already checked in main function)
         ItemInfo item = InventoryConsts.instance.itemInfoMap[carryingItemKey];
@@ -154,7 +154,7 @@ public class CraftingStation : MonoBehaviour
     }
 
     // private helper-helper function
-    private void CraftingPutDataAndUIHelper(string carryingItemKey, CraftingStation.SlotName slotName)
+    private void CraftingPutDataAndUIHelper(string carryingItemKey, MCraftingStation.SlotName slotName)
     {
         // Data
         slotNameToItemKey[slotName] = carryingItemKey;
@@ -167,7 +167,7 @@ public class CraftingStation : MonoBehaviour
     }
 
     // private helper function
-    private void PutInValidSlot(string carryingItemKey, CraftingStation.SlotName slotName, int personalIndex)
+    private void PutInValidSlot(string carryingItemKey, MCraftingStation.SlotName slotName, int personalIndex)
     {
         // PERSONAL SLOT
         if (slotName == SlotName.Personal)
@@ -190,7 +190,7 @@ public class CraftingStation : MonoBehaviour
     }
 
 
-    public bool TryPickupThing(PointerEventData eventData, CraftingStation.SlotName slotName, int personalIndex)
+    public bool TryPickupThing(PointerEventData eventData, MCraftingStation.SlotName slotName, int personalIndex)
     {
         StatusController.instance.CraftingDebugPrint("OMNOM 3 slotName" + slotName);
 
@@ -233,7 +233,7 @@ public class CraftingStation : MonoBehaviour
         return true;
     }
 
-    public bool TryPutThing(PointerEventData eventData, CraftingStation.SlotName slotName, int personalIndex)
+    public bool TryPutThing(PointerEventData eventData, MCraftingStation.SlotName slotName, int personalIndex)
     {
         // repeat status check
         (StatusController.BigStatus bigStatus, StatusController.LittleStatus littleStatus) = StatusController.instance.GetStatus();

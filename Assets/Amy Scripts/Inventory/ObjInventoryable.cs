@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Inventoryable : MonoBehaviour
+public class ObjInventoryable : MonoBehaviour
 {
     public string itemKey;
 

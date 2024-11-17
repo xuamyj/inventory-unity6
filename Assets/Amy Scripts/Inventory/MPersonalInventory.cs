@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PersonalInventory : MonoBehaviour
+public class MPersonalInventory : MonoBehaviour
 {
     /* ---- DATA ---- */
     private List<string> realSlots;

@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ClickMovable : MonoBehaviour, IPointerClickHandler
+public class SpriteClickMovable : MonoBehaviour, IPointerClickHandler
 {
-    public CraftingStation.SlotName slotName;
+    public MCraftingStation.SlotName slotName;
     public int personalIndex; // only applicable if CraftingStation.SlotName = Personal
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -32,11 +32,11 @@ public class ClickMovable : MonoBehaviour, IPointerClickHandler
 
             if (StatusController.instance.GetMouseCarryingBool() == false) // not holding anything
             {
-                CraftingStation.instance.TryPickupThing(eventData, slotName, personalIndex);
+                MCraftingStation.instance.TryPickupThing(eventData, slotName, personalIndex);
             }
             else // holding something already
             {
-                CraftingStation.instance.TryPutThing(eventData, slotName, personalIndex);
+                MCraftingStation.instance.TryPutThing(eventData, slotName, personalIndex);
             }
         }
         /* ---- CHEST ---- */

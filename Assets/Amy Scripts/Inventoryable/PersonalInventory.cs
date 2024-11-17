@@ -4,12 +4,68 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
+public struct FullName : System.IEquatable<FullName>
+{
+    public string firstName;
+    public string lastName;
+
+    // Constructors
+    public FullName(string firstName, string lastName)
+    {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public string GetInitials()
+    {
+        string initials = firstName[0].ToString();
+        initials += lastName[0];
+        return initials.ToUpper();
+    }
+
+    // Override methods for equality and comparison
+    public override bool Equals(object obj)
+    {
+        return obj is FullName name && Equals(name);
+    }
+
+    public bool Equals(FullName other)
+    {
+        return firstName == other.firstName &&
+               lastName == other.lastName;
+    }
+
+    public override int GetHashCode()
+    {
+        return System.HashCode.Combine(firstName, lastName);
+    }
+
+    public static bool operator ==(FullName left, FullName right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(FullName left, FullName right)
+    {
+        return !(left == right);
+    }
+
+    // String conversion
+    public override string ToString()
+    {
+        return firstName + " " + lastName;
+    }
+}
+
+
 public class PersonalInventory : MonoBehaviour
 {
     /* ---- DATA ---- */
-    private List<string> realSlots;
+    private List<string> realSlots; // -- DENNIS how does this work once you have a bigger inv?
     private HashSet<int> lockedIndexes;
     private UnityEngine.Sprite BLANK_SPRITE; // init in Awake() but treat like constant
+
+    // -- DENNIS - talk about resource loading 
 
     /* ---- UI: DRAGGED ---- */
     public List<GameObject> visibleSlots;
@@ -70,7 +126,7 @@ public class PersonalInventory : MonoBehaviour
 
                 /* ---- UI ---- */
                 UnityEngine.UI.Image img = visibleSlots[index].GetComponent<UnityEngine.UI.Image>();
-                img.sprite = BLANK_SPRITE;
+                img.sprite = BLANK_SPRITE; // -- DENNIS - probably should make like a "ItemImageUI" Monobehaviour 
 
                 StatusController.instance.PersonalInventoryDebugPrint("True! index " + index);
                 return true;

@@ -10,7 +10,7 @@ public class CraftingStation : MonoBehaviour
     public StatusController.CraftingSizeType craftingSizeType;
 
     /* ---- DATA ---- */
-    private Dictionary<SlotName, string> slotNameToItemKey;
+    private Dictionary<SlotName, string> slotNameToItemKey; // -- DENNIS this stuff should probably live somewhere else
     private UnityEngine.Sprite BLANK_SPRITE; // init in Awake() but treat like constant
 
     /* ---- UI: DRAGGED ---- */
@@ -21,14 +21,16 @@ public class CraftingStation : MonoBehaviour
     public UnityEngine.UI.Image ingredient1Slot; // these + below can be clicked
     public UnityEngine.UI.Image ingredient2Slot;
     public UnityEngine.UI.Image simpleResultSlot;
-    public UnityEngine.UI.Image decorIngrSlot; // these + below can be null!
+    public UnityEngine.UI.Image decorIngrSlot; // these + below can be null! // -- DENNIS we can talk about nullable 
     public UnityEngine.UI.Image decorResultSlot;
     public UnityEngine.UI.Image upgradeIngr1Slot;
     public UnityEngine.UI.Image upgradeIngr2Slot;
     public UnityEngine.UI.Image upgradeResultSlot;
 
     private Dictionary<SlotName, UnityEngine.UI.Image> slotNameToActualSlot;
+    // -- DENNIS you could also probably do this as a 2-D array in the editor and then read it to the dictionary at start
 
+    public List<(SlotName, UnityEngine.UI.Image)> testList;
 
     /* ---- CONSTANTS ---- */
     public enum SlotName
@@ -61,6 +63,7 @@ public class CraftingStation : MonoBehaviour
         slotNameToItemKey[SlotName.UpgradeIngr2Key] = "";
         slotNameToItemKey[SlotName.UpgradeResultKey] = "";
 
+        /* ---- UI ---- */
         slotNameToActualSlot = new Dictionary<SlotName, UnityEngine.UI.Image>();
         slotNameToActualSlot[SlotName.Ingredient1Key] = ingredient1Slot;
         slotNameToActualSlot[SlotName.Ingredient2Key] = ingredient2Slot;
@@ -71,7 +74,6 @@ public class CraftingStation : MonoBehaviour
         slotNameToActualSlot[SlotName.UpgradeIngr2Key] = upgradeIngr2Slot;
         slotNameToActualSlot[SlotName.UpgradeResultKey] = upgradeResultSlot;
 
-        /* ---- UI ---- */
         BLANK_SPRITE = Resources.Load<Sprite>(InventoryConsts.BLANK_SPRITE_URL);
         ingredient1Slot.sprite = BLANK_SPRITE;
         ingredient2Slot.sprite = BLANK_SPRITE;
@@ -125,6 +127,7 @@ public class CraftingStation : MonoBehaviour
         {
             return true;
         }
+        // -- DENNIS - you should try to always have it be slotName first, then item properties second, otherwise it becomes hard to read / reason about
         if (item.isRaw &&
             (slotName == SlotName.Ingredient1Key
             || slotName == SlotName.Ingredient2Key
@@ -174,6 +177,8 @@ public class CraftingStation : MonoBehaviour
         {
             // Personal controls its own Data & UI
             // remove from locked slot, add to new slot
+
+            // -- DENNIS i think you should try to handle taking it out of where it used to be and putting it down in the new place as separate actions/helper functions. because it could go inv->inv, crafting->crafting, inv->crafting, or crafting->inv 
             personalInventory.TryRemoveLockedItem(carryingItemKey);
             personalInventory.TryAddItemToSpecificSlot(carryingItemKey, personalIndex);
         }

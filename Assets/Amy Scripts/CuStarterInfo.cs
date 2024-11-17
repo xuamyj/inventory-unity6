@@ -1,10 +1,8 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-public class FriendController : MonoBehaviour
+public class CuStarterInfo : MonoBehaviour
 {
-    public List<string> yarnNodeNames;
-    public int yarnNodeIndex;
+    public string cutsceneKey;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

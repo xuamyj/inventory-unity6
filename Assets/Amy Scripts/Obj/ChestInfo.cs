@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ChestController : MonoBehaviour
+public class ChestInfo : MonoBehaviour
 {
     public StatusController.InventoryType inventoryType;
 

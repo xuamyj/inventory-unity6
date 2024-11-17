@@ -1,8 +1,9 @@
 using UnityEngine;
 
-public class CuStarterController : MonoBehaviour
+public class TorchInfo : MonoBehaviour
 {
-    public string cutsceneKey;
+    public StatusController.CraftingElemType craftingElemType;
+    public StatusController.CraftingSizeType craftingSizeType;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

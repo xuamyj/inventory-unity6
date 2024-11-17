@@ -156,7 +156,7 @@ public class PlayerController : MonoBehaviour
     {
         if (obj && obj.CompareTag("CutsceneStarter"))
         {
-            CuStarterController cuStarterC = obj.GetComponent<CuStarterController>();
+            CuStarterInfo cuStarterC = obj.GetComponent<CuStarterInfo>();
             string cutsceneKey = cuStarterC.cutsceneKey;
 
             Destroy(obj);
@@ -186,21 +186,21 @@ public class PlayerController : MonoBehaviour
             /* ---- CHEST ---- */
             if (obj && obj.CompareTag("Chest"))
             {
-                ChestController chest = obj.GetComponent<ChestController>();
+                ChestInfo chest = obj.GetComponent<ChestInfo>();
                 StatusController.instance.OpenInventory(chest.inventoryType);
             }
 
             /* ---- CRAFTING ---- */
             if (obj && obj.CompareTag("CraftingStation"))
             {
-                TorchController torch = obj.GetComponent<TorchController>();
+                TorchInfo torch = obj.GetComponent<TorchInfo>();
                 StatusController.instance.OpenCrafting(torch.craftingElemType, torch.craftingSizeType);
             }
 
             /* ---- DIALOGUE ---- */
             if (obj && obj.CompareTag("Friend"))
             {
-                FriendController friend = obj.GetComponent<FriendController>();
+                FriendInfo friend = obj.GetComponent<FriendInfo>();
                 int index = friend.yarnNodeIndex;
                 int len = friend.yarnNodeNames.Capacity;
                 if (index >= 0 && index < len)

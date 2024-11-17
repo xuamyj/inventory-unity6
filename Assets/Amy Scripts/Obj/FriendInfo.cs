@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class TorchController : MonoBehaviour
+public class FriendInfo : MonoBehaviour
 {
-    public StatusController.CraftingElemType craftingElemType;
-    public StatusController.CraftingSizeType craftingSizeType;
+    public List<string> yarnNodeNames;
+    public int yarnNodeIndex;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

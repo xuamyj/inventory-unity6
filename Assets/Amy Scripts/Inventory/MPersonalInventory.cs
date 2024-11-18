@@ -9,7 +9,6 @@ public class MPersonalInventory : MonoBehaviour
     /* ---- DATA ---- */
     private List<string> realSlots;
     private HashSet<int> lockedIndexes;
-    private UnityEngine.Sprite BLANK_SPRITE; // init in Awake() but treat like constant
 
     /* ---- UI: DRAGGED ---- */
     public List<GameObject> visibleSlots;
@@ -19,9 +18,6 @@ public class MPersonalInventory : MonoBehaviour
         /* ---- DATA ---- */
         realSlots = new List<string>(Enumerable.Repeat("", 10));
         lockedIndexes = new HashSet<int>();
-
-        /* ---- UI ---- */
-        BLANK_SPRITE = Resources.Load<Sprite>(ItemConsts.BLANK_SPRITE_URL);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -70,7 +66,7 @@ public class MPersonalInventory : MonoBehaviour
 
                 /* ---- UI ---- */
                 UnityEngine.UI.Image img = visibleSlots[index].GetComponent<UnityEngine.UI.Image>();
-                img.sprite = BLANK_SPRITE;
+                img.sprite = AllInventoryController.instance.BLANK_SPRITE;
 
                 AllInventoryController.instance.PersonalInventoryDebugPrint("True! index " + index);
                 return true;

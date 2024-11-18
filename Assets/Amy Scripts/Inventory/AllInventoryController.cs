@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class AllInventoryController : MonoBehaviour
 {
+    /* ---- CONSTANTS: DRAGGED ---- */
+    public UnityEngine.Sprite BLANK_SPRITE;
 
     /* ---- DEBUG PRINT ---- */
     public bool debugPrintCrafting;

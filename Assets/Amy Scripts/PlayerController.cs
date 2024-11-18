@@ -109,14 +109,15 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat("Speed", magnitude);
 
         }
-        else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Inventory_InWorld)
-        {
-
-        }
         else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Dialogue_InWorld)
         {
 
         }
+        else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Crafting_InWorld)
+        {
+
+        }
+        // else if (check for other LittleStatus: DisplayCabinet_InWorld, StorageChest_InWorld, SellingCrate_InWorld, PersonalInventory_InWorld)
     }
 
     void FixedUpdate()
@@ -142,14 +143,15 @@ public class PlayerController : MonoBehaviour
 
             // Remember to (Hierarchy) Player > Rigidbody 2D > Interpolate set to "Interpolate" instead of "None" to fix judder
         }
-        else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Inventory_InWorld)
-        {
-
-        }
         else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Dialogue_InWorld)
         {
 
         }
+        else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Crafting_InWorld)
+        {
+
+        }
+        // else if (check for other LittleStatus: DisplayCabinet_InWorld, StorageChest_InWorld, SellingCrate_InWorld, PersonalInventory_InWorld)
     }
 
     void CutsceneStarterLeOrRiHelper(GameObject obj)
@@ -187,7 +189,7 @@ public class PlayerController : MonoBehaviour
             if (obj && obj.CompareTag("Chest"))
             {
                 ChestInfo chest = obj.GetComponent<ChestInfo>();
-                StatusController.instance.OpenInventory(chest.tempChestType);
+                StatusController.instance.OpenInventory(chest.inventoryType);
             }
 
             /* ---- CRAFTING ---- */
@@ -229,14 +231,15 @@ public class PlayerController : MonoBehaviour
             /* ---- CUTSCENE STARTER (eg. Wally) ---- */
             CutsceneStarterLeOrRiHelper(obj);
         }
-        else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Inventory_InWorld)
-        {
-
-        }
         else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Dialogue_InWorld)
         {
 
         }
+        else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Crafting_InWorld)
+        {
+
+        }
+        // else if (check for other LittleStatus: DisplayCabinet_InWorld, StorageChest_InWorld, SellingCrate_InWorld, PersonalInventory_InWorld)
     }
 
     /* ---- LEFT CLICK ---- */
@@ -274,13 +277,14 @@ public class PlayerController : MonoBehaviour
             /* ---- CUTSCENE STARTER (eg. Chair) ---- */
             CutsceneStarterLeOrRiHelper(obj);
         }
-        else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Inventory_InWorld)
-        {
-
-        }
         else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Dialogue_InWorld)
         {
 
         }
+        else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Crafting_InWorld)
+        {
+
+        }
+        // else if (check for other LittleStatus: DisplayCabinet_InWorld, StorageChest_InWorld, SellingCrate_InWorld, PersonalInventory_InWorld)
     }
 }

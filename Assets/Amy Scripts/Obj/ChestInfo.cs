@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class ChestInfo : MonoBehaviour
 {
-    [UnityEngine.Serialization.FormerlySerializedAs("inventoryType")]
-    public StatusController.TempChestType tempChestType;
+    public InventoryType inventoryType;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

@@ -40,9 +40,22 @@ public class SpriteClickMovable : MonoBehaviour, IPointerClickHandler
             }
         }
         /* ---- CHEST ---- */
-        else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Inventory_InWorld)
+        else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.DisplayCabinet_InWorld)
         {
-            // (do nothing now, but later might have click to move direct)
+            // (do nothing now, but later add things)
+        }
+        else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.StorageChest_InWorld)
+        {
+            // (do nothing now, but later add things)
+        }
+        else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.SellingCrate_InWorld)
+        {
+            // (do nothing now, but later add things)
+        }
+        /* ---- PERSONAL INVENTORY 2nd screen ---- */
+        else if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.PersonalInventory_InWorld)
+        {
+            // (do nothing now, but later add things)
         }
     }
 }

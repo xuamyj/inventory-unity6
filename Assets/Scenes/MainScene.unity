@@ -3015,7 +3015,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &664152592
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5651,6 +5651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1ba93a8ea154802b7c5b1a4a9e1986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BLANK_SPRITE: {fileID: 21300000, guid: ae4f940b9c9a447cb858fc1a8e497158, type: 3}
   debugPrintCrafting: 0
   debugPrintPersonalInventory: 0
 --- !u!1 &1494731135

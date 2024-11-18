@@ -11,7 +11,6 @@ public class MCraftingStation : MonoBehaviour
 
     /* ---- DATA ---- */
     private Dictionary<SlotName, string> slotNameToItemKey;
-    private UnityEngine.Sprite BLANK_SPRITE; // init in Awake() but treat like constant
 
     /* ---- UI: DRAGGED ---- */
     public MPersonalInventory personalInventory;
@@ -72,20 +71,19 @@ public class MCraftingStation : MonoBehaviour
         slotNameToActualSlot[SlotName.UpgradeResultKey] = upgradeResultSlot;
 
         /* ---- UI ---- */
-        BLANK_SPRITE = Resources.Load<Sprite>(ItemConsts.BLANK_SPRITE_URL);
-        ingredient1Slot.sprite = BLANK_SPRITE;
-        ingredient2Slot.sprite = BLANK_SPRITE;
-        simpleResultSlot.sprite = BLANK_SPRITE;
+        ingredient1Slot.sprite = AllInventoryController.instance.BLANK_SPRITE;
+        ingredient2Slot.sprite = AllInventoryController.instance.BLANK_SPRITE;
+        simpleResultSlot.sprite = AllInventoryController.instance.BLANK_SPRITE;
         if (craftingSizeType == StatusController.CraftingSizeType.DecorOnly || craftingSizeType == StatusController.CraftingSizeType.UpgradeDecor)
         {
-            decorIngrSlot.sprite = BLANK_SPRITE;
-            decorResultSlot.sprite = BLANK_SPRITE;
+            decorIngrSlot.sprite = AllInventoryController.instance.BLANK_SPRITE;
+            decorResultSlot.sprite = AllInventoryController.instance.BLANK_SPRITE;
         }
         if (craftingSizeType == StatusController.CraftingSizeType.UpgradeDecor)
         {
-            upgradeIngr1Slot.sprite = BLANK_SPRITE;
-            upgradeIngr2Slot.sprite = BLANK_SPRITE;
-            upgradeResultSlot.sprite = BLANK_SPRITE;
+            upgradeIngr1Slot.sprite = AllInventoryController.instance.BLANK_SPRITE;
+            upgradeIngr2Slot.sprite = AllInventoryController.instance.BLANK_SPRITE;
+            upgradeResultSlot.sprite = AllInventoryController.instance.BLANK_SPRITE;
         }
     }
 
@@ -285,7 +283,7 @@ public class MCraftingStation : MonoBehaviour
             }
         }
         // clear mouseCarrying image..
-        StatusController.instance.mouseCarryingImageUI.sprite = BLANK_SPRITE;
+        StatusController.instance.mouseCarryingImageUI.sprite = AllInventoryController.instance.BLANK_SPRITE;
 
         // set status: if it got here, it worked
         StatusController.instance.StopMouseCarrying();

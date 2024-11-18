@@ -42,16 +42,13 @@ public class StatusController : MonoBehaviour
     public enum LittleStatus
     {
         Default_InWorld,
-        Inventory_InWorld,
         Dialogue_InWorld,
         Crafting_InWorld,
+        DisplayCabinet_InWorld,
+        StorageChest_InWorld,
+        SellingCrate_InWorld,
+        PersonalInventory_InWorld,
         Null
-    }
-    public enum TempChestType
-    {
-        Storage,
-        Display,
-        Selling
     }
     public enum CraftingElemType
     {
@@ -79,7 +76,6 @@ public class StatusController : MonoBehaviour
 
     [SerializeField] private BigStatus bigStatus;
     [SerializeField] private LittleStatus littleStatus; // only relevant if BigStatus == InWorld
-    private TempChestType tempChestType; // only relevant if LittleStatus = Inventory_InWorld
     private CraftingElemType currCraftingElemType; // these 2 only relevant if LittleStatus = Crafting_InWorld
     private CraftingSizeType currCraftingSizeType;
     private bool craftOrInvMouseCarrying;
@@ -122,7 +118,6 @@ public class StatusController : MonoBehaviour
             {"IN", 0}, // Isadora - Nadira
             {"MN", 0}, // Malcolm - Nadira
         };
-        tempChestType = TempChestType.Storage; // we'll say this one is default for now
         currCraftingElemType = CraftingElemType.Kiln; // we'll say these 2 are default for now
         currCraftingSizeType = CraftingSizeType.Simple;
         craftOrInvMouseCarrying = false;
@@ -200,30 +195,37 @@ public class StatusController : MonoBehaviour
     }
 
     /* ---- CHEST ---- */
-    public void OpenInventory(TempChestType type)
+    public void OpenInventory(InventoryType type)
     {
         if (bigStatus == BigStatus.InWorld && littleStatus == LittleStatus.Default_InWorld) // open inventory
         {
-            // Status
-            littleStatus = LittleStatus.Inventory_InWorld;
-            tempChestType = type;
-
-            // UI
-            if (tempChestType == TempChestType.Storage)
+            if (type == InventoryType.NStorageChest)
             {
+                // Status
+                littleStatus = LittleStatus.StorageChest_InWorld;
+
+                // UI
                 storageInventoryUI.gameObject.SetActive(true);
             }
-            else if (tempChestType == TempChestType.Display)
+            else if (type == InventoryType.MDisplayCabinet)
             {
+                // Status
+                littleStatus = LittleStatus.DisplayCabinet_InWorld;
+
+                // UI
                 displayInventoryUI.gameObject.SetActive(true);
             }
-            else if (tempChestType == TempChestType.Selling)
+            else if (type == InventoryType.NSellingCrate)
             {
+                // Status
+                littleStatus = LittleStatus.SellingCrate_InWorld;
+
+                // UI
                 sellingInventoryUI.gameObject.SetActive(true);
             }
             else
             {
-                UnityEngine.Debug.Log("ERROR: StatusController.cs > OpenInventory > something wrong with TempChestType");
+                UnityEngine.Debug.Log("ERROR: StatusController.cs > OpenInventory > something wrong with InventoryType");
             }
         }
         else
@@ -233,28 +235,29 @@ public class StatusController : MonoBehaviour
     }
     public void CloseInventory()
     {
-        if (bigStatus == BigStatus.InWorld && littleStatus == LittleStatus.Inventory_InWorld) // close inventory
+        if (bigStatus == BigStatus.InWorld && littleStatus == LittleStatus.StorageChest_InWorld)
         {
             // Status
             littleStatus = LittleStatus.Default_InWorld;
 
             // UI
-            if (tempChestType == TempChestType.Storage)
-            {
-                storageInventoryUI.gameObject.SetActive(false);
-            }
-            else if (tempChestType == TempChestType.Display)
-            {
-                displayInventoryUI.gameObject.SetActive(false);
-            }
-            else if (tempChestType == TempChestType.Selling)
-            {
-                sellingInventoryUI.gameObject.SetActive(false);
-            }
-            else
-            {
-                UnityEngine.Debug.Log("ERROR: StatusController.cs > CloseInventory > something wrong with TempChestType");
-            }
+            storageInventoryUI.gameObject.SetActive(false);
+        }
+        else if (bigStatus == BigStatus.InWorld && littleStatus == LittleStatus.DisplayCabinet_InWorld)
+        {
+            // Status
+            littleStatus = LittleStatus.Default_InWorld;
+
+            // UI
+            displayInventoryUI.gameObject.SetActive(false);
+        }
+        else if (bigStatus == BigStatus.InWorld && littleStatus == LittleStatus.SellingCrate_InWorld)
+        {
+            // Status
+            littleStatus = LittleStatus.Default_InWorld;
+
+            // UI
+            sellingInventoryUI.gameObject.SetActive(false);
         }
         else
         {

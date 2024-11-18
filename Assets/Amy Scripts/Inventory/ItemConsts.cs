@@ -25,7 +25,7 @@ public class ItemInfo
     }
 }
 
-public class InventoryConsts : MonoBehaviour
+public class ItemConsts : MonoBehaviour
 {
     /* ---- CONSTS ---- */
     public const string BLANK_SPRITE_URL = "Sprite-blankobj";
@@ -34,7 +34,7 @@ public class InventoryConsts : MonoBehaviour
     public Dictionary<string, ItemInfo> itemInfoMap;
 
     /* ---- STATIC ---- */
-    public static InventoryConsts instance { get; private set; }
+    public static ItemConsts instance { get; private set; }
     private void Awake()
     {
         instance = this;

@@ -47,7 +47,7 @@ public class StatusController : MonoBehaviour
         Crafting_InWorld,
         Null
     }
-    public enum InventoryType
+    public enum TempChestType
     {
         Storage,
         Display,
@@ -79,7 +79,7 @@ public class StatusController : MonoBehaviour
 
     [SerializeField] private BigStatus bigStatus;
     [SerializeField] private LittleStatus littleStatus; // only relevant if BigStatus == InWorld
-    private InventoryType currInventoryType; // only relevant if LittleStatus = Inventory_InWorld
+    private TempChestType tempChestType; // only relevant if LittleStatus = Inventory_InWorld
     private CraftingElemType currCraftingElemType; // these 2 only relevant if LittleStatus = Crafting_InWorld
     private CraftingSizeType currCraftingSizeType;
     private bool craftOrInvMouseCarrying;
@@ -105,8 +105,6 @@ public class StatusController : MonoBehaviour
 
     /* ---- ONE-OFFS: DRAGGED ---- */
     public OneoffChair oneoffChair;
-    public bool debugPrintCrafting;
-    public bool debugPrintPersonalInventory;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -124,7 +122,7 @@ public class StatusController : MonoBehaviour
             {"IN", 0}, // Isadora - Nadira
             {"MN", 0}, // Malcolm - Nadira
         };
-        currInventoryType = InventoryType.Storage; // we'll say this one is default for now
+        tempChestType = TempChestType.Storage; // we'll say this one is default for now
         currCraftingElemType = CraftingElemType.Kiln; // we'll say these 2 are default for now
         currCraftingSizeType = CraftingSizeType.Simple;
         craftOrInvMouseCarrying = false;
@@ -202,30 +200,30 @@ public class StatusController : MonoBehaviour
     }
 
     /* ---- CHEST ---- */
-    public void OpenInventory(InventoryType type)
+    public void OpenInventory(TempChestType type)
     {
         if (bigStatus == BigStatus.InWorld && littleStatus == LittleStatus.Default_InWorld) // open inventory
         {
             // Status
             littleStatus = LittleStatus.Inventory_InWorld;
-            currInventoryType = type;
+            tempChestType = type;
 
             // UI
-            if (currInventoryType == InventoryType.Storage)
+            if (tempChestType == TempChestType.Storage)
             {
                 storageInventoryUI.gameObject.SetActive(true);
             }
-            else if (currInventoryType == InventoryType.Display)
+            else if (tempChestType == TempChestType.Display)
             {
                 displayInventoryUI.gameObject.SetActive(true);
             }
-            else if (currInventoryType == InventoryType.Selling)
+            else if (tempChestType == TempChestType.Selling)
             {
                 sellingInventoryUI.gameObject.SetActive(true);
             }
             else
             {
-                UnityEngine.Debug.Log("ERROR: StatusController.cs > OpenInventory > something wrong with InventoryType");
+                UnityEngine.Debug.Log("ERROR: StatusController.cs > OpenInventory > something wrong with TempChestType");
             }
         }
         else
@@ -241,21 +239,21 @@ public class StatusController : MonoBehaviour
             littleStatus = LittleStatus.Default_InWorld;
 
             // UI
-            if (currInventoryType == InventoryType.Storage)
+            if (tempChestType == TempChestType.Storage)
             {
                 storageInventoryUI.gameObject.SetActive(false);
             }
-            else if (currInventoryType == InventoryType.Display)
+            else if (tempChestType == TempChestType.Display)
             {
                 displayInventoryUI.gameObject.SetActive(false);
             }
-            else if (currInventoryType == InventoryType.Selling)
+            else if (tempChestType == TempChestType.Selling)
             {
                 sellingInventoryUI.gameObject.SetActive(false);
             }
             else
             {
-                UnityEngine.Debug.Log("ERROR: StatusController.cs > CloseInventory > something wrong with InventoryType");
+                UnityEngine.Debug.Log("ERROR: StatusController.cs > CloseInventory > something wrong with TempChestType");
             }
         }
         else
@@ -292,21 +290,6 @@ public class StatusController : MonoBehaviour
     {
         craftOrInvMouseCarrying = false;
         itemKeyMouseCarrying = "";
-    }
-
-    public void CraftingDebugPrint(string text)
-    {
-        if (debugPrintCrafting)
-        {
-            UnityEngine.Debug.Log("CRAFTING_DEBUG: " + text);
-        }
-    }
-    public void PersonalInventoryDebugPrint(string text)
-    {
-        if (debugPrintPersonalInventory)
-        {
-            UnityEngine.Debug.Log("PERSONAL_INVENTORY_DEBUG: " + text);
-        }
     }
 
     public void OpenCrafting(CraftingElemType elemT, CraftingSizeType sizeT)

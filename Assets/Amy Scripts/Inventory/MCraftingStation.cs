@@ -72,7 +72,7 @@ public class MCraftingStation : MonoBehaviour
         slotNameToActualSlot[SlotName.UpgradeResultKey] = upgradeResultSlot;
 
         /* ---- UI ---- */
-        BLANK_SPRITE = Resources.Load<Sprite>(InventoryConsts.BLANK_SPRITE_URL);
+        BLANK_SPRITE = Resources.Load<Sprite>(ItemConsts.BLANK_SPRITE_URL);
         ingredient1Slot.sprite = BLANK_SPRITE;
         ingredient2Slot.sprite = BLANK_SPRITE;
         simpleResultSlot.sprite = BLANK_SPRITE;
@@ -120,7 +120,7 @@ public class MCraftingStation : MonoBehaviour
     private bool IsValidSlot(string carryingItemKey, MCraftingStation.SlotName slotName, int personalIndex)
     {
         // assume it's an empty slot (already checked in main function)
-        ItemInfo item = InventoryConsts.instance.itemInfoMap[carryingItemKey];
+        ItemInfo item = ItemConsts.instance.itemInfoMap[carryingItemKey];
         if (slotName == SlotName.Personal)
         {
             return true;
@@ -160,7 +160,7 @@ public class MCraftingStation : MonoBehaviour
         slotNameToItemKey[slotName] = carryingItemKey;
 
         // UI
-        ItemInfo item = InventoryConsts.instance.itemInfoMap[carryingItemKey];
+        ItemInfo item = ItemConsts.instance.itemInfoMap[carryingItemKey];
         string spriteUrl = item.spriteUrl;
         UnityEngine.UI.Image img = slotNameToActualSlot[slotName];
         img.sprite = Resources.Load<Sprite>(spriteUrl);
@@ -192,7 +192,7 @@ public class MCraftingStation : MonoBehaviour
 
     public bool TryPickupThing(PointerEventData eventData, MCraftingStation.SlotName slotName, int personalIndex)
     {
-        StatusController.instance.CraftingDebugPrint("OMNOM 3 slotName" + slotName);
+        AllInventoryController.instance.CraftingDebugPrint("OMNOM 3 slotName" + slotName);
 
         // repeat status check
         (StatusController.BigStatus bigStatus, StatusController.LittleStatus littleStatus) = StatusController.instance.GetStatus();
@@ -218,13 +218,13 @@ public class MCraftingStation : MonoBehaviour
         }
         else { } // "ToPut" happens at the end, empty on purpose 
 
-        StatusController.instance.CraftingDebugPrint("OMNOM 4 made it here itemKey" + itemKey);
+        AllInventoryController.instance.CraftingDebugPrint("OMNOM 4 made it here itemKey" + itemKey);
 
         // UI
         // gray personalInventory image..
 
         // change mouseCarrying image..
-        string spriteUrl = InventoryConsts.instance.itemInfoMap[itemKey].spriteUrl;
+        string spriteUrl = ItemConsts.instance.itemInfoMap[itemKey].spriteUrl;
         StatusController.instance.mouseCarryingImageUI.sprite = Resources.Load<Sprite>(spriteUrl);
         // move position to mouse + get it to follow = both are in MouseCarryingController.cs
 

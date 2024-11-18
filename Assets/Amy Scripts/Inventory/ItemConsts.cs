@@ -45,6 +45,14 @@ public class ItemConsts : MonoBehaviour
         itemInfoMap["pot"] = new ItemInfo("pot", "Pot", "pot_3", iRaw: false, cbUpgraded: true, cbDecorated: true);
     }
 
+    public UnityEngine.Sprite GetAndLoadSpriteUrl(string itemKey)
+    {
+        ItemInfo item = ItemConsts.instance.itemInfoMap[itemKey];
+        string spriteUrl = item.spriteUrl;
+        UnityEngine.Sprite loadedImg = Resources.Load<Sprite>(spriteUrl);
+        return loadedImg;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

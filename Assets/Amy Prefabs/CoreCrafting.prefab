@@ -238,8 +238,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 3
-  personalIndex: 0
+  inventoryLocation:
+    inventoryType: 1
+    personalInventoryIndex: 0
+    craftingSlotName: 3
+    keyDisplayCabinet: 0
+    displayCabinetSide: 0
+    displayCabinetIndex: 0
+    keyStorageChest: 0
+    storageChestIndex: 0
+    sellingCrateIndex: 0
 --- !u!1 &2408359397737777468
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,8 +336,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 2
-  personalIndex: 0
+  inventoryLocation:
+    inventoryType: 1
+    personalInventoryIndex: 0
+    craftingSlotName: 2
+    keyDisplayCabinet: 0
+    displayCabinetSide: 0
+    displayCabinetIndex: 0
+    keyStorageChest: 0
+    storageChestIndex: 0
+    sellingCrateIndex: 0
 --- !u!1 &5920296034245985650
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,5 +550,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 1
-  personalIndex: 0
+  inventoryLocation:
+    inventoryType: 1
+    personalInventoryIndex: 0
+    craftingSlotName: 1
+    keyDisplayCabinet: 0
+    displayCabinetSide: 0
+    displayCabinetIndex: 0
+    keyStorageChest: 0
+    storageChestIndex: 0
+    sellingCrateIndex: 0

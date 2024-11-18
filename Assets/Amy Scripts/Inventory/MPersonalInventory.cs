@@ -37,6 +37,24 @@ public class MPersonalInventory : MonoBehaviour
         return realSlots[index];
     }
 
+    // these are currently private / called ..Helper because they don't check if the space is empty / item is present, they just do the thing
+    private void AddItemToIndexHelper(int index, string itemKey)
+    {
+        // Data
+        realSlots[index] = itemKey;
+
+        // UI
+        visibleSlots[index].GetComponent<UnityEngine.UI.Image>().sprite = ItemConsts.instance.GetAndLoadSpriteUrl(itemKey);
+    }
+    public void RemoveItemFromIndexHelper(int index) // TODO: keep public or temp? 
+    {
+        // Data
+        realSlots[index] = "";
+
+        // UI
+        visibleSlots[index].GetComponent<UnityEngine.UI.Image>().sprite = AllInventoryController.instance.BLANK_SPRITE;
+    }
+
     public HashSet<int> GetLockedIndexes()
     {
         return lockedIndexes;
@@ -60,13 +78,8 @@ public class MPersonalInventory : MonoBehaviour
         {
             if (carryingItemKey == realSlots[index])
             {
-                /* ---- DATA ---- */
                 UnlockIndex(index);
-                realSlots[index] = "";
-
-                /* ---- UI ---- */
-                UnityEngine.UI.Image img = visibleSlots[index].GetComponent<UnityEngine.UI.Image>();
-                img.sprite = AllInventoryController.instance.BLANK_SPRITE;
+                RemoveItemFromIndexHelper(index);
 
                 AllInventoryController.instance.PersonalInventoryDebugPrint("True! index " + index);
                 return true;
@@ -74,19 +87,6 @@ public class MPersonalInventory : MonoBehaviour
         }
         AllInventoryController.instance.PersonalInventoryDebugPrint("False!");
         return false;
-    }
-
-    // private helper function
-    private void AddItemDataAndUIHelper(string itemKey, int index)
-    {
-        /* ---- DATA ---- */
-        realSlots[index] = itemKey;
-
-        /* ---- UI ---- */
-        ItemInfo item = ItemConsts.instance.itemInfoMap[itemKey];
-        string spriteUrl = item.spriteUrl;
-        UnityEngine.UI.Image img = visibleSlots[index].GetComponent<UnityEngine.UI.Image>();
-        img.sprite = Resources.Load<Sprite>(spriteUrl);
     }
 
     public bool TryAddItemToEmptySlot(string itemKey)
@@ -99,7 +99,7 @@ public class MPersonalInventory : MonoBehaviour
         {
             if (realSlots[i] == "")
             {
-                AddItemDataAndUIHelper(itemKey, i);
+                AddItemToIndexHelper(i, itemKey);
 
                 AllInventoryController.instance.PersonalInventoryDebugPrint("True! index " + i);
                 return true;
@@ -109,17 +109,17 @@ public class MPersonalInventory : MonoBehaviour
         return false;
     }
 
-    public bool TryAddItemToSpecificSlot(string itemKey, int personalIndex)
+    public bool TryAddItemToSpecificIndex(int index, string itemKey)
     {
         // in theory, well.. for now, this function always runs, in the future could add code to take care of StatusController
 
-        AllInventoryController.instance.PersonalInventoryDebugPrint("Hit TryAddItemToSpecificSlot( " + itemKey + " , " + personalIndex + " )");
+        AllInventoryController.instance.PersonalInventoryDebugPrint("Hit MPersonalInventory.cs: TryAddItemToSpecificIndex( " + index + " , " + itemKey + " )");
 
-        if (realSlots[personalIndex] == "")
+        if (realSlots[index] == "")
         {
-            AddItemDataAndUIHelper(itemKey, personalIndex);
+            AddItemToIndexHelper(index, itemKey);
 
-            AllInventoryController.instance.PersonalInventoryDebugPrint("True! index " + personalIndex);
+            AllInventoryController.instance.PersonalInventoryDebugPrint("True! index " + index);
             return true;
         }
         AllInventoryController.instance.PersonalInventoryDebugPrint("False!");

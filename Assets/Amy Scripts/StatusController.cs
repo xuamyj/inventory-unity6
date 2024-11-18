@@ -80,6 +80,7 @@ public class StatusController : MonoBehaviour
     private CraftingSizeType currCraftingSizeType;
     private bool craftOrInvMouseCarrying;
     private string itemKeyMouseCarrying;
+    private InventoryLocation origLocMouseCarrying;
 
     /* ---- UI: DRAGGED ---- */
     public GameObject gameSavedScreen;
@@ -132,6 +133,26 @@ public class StatusController : MonoBehaviour
     public (BigStatus, LittleStatus) GetStatus()
     {
         return (bigStatus, littleStatus);
+    }
+    public bool IsInWorldAndInventoryStatus()
+    {
+        if (bigStatus != StatusController.BigStatus.InWorld)
+        {
+            return false;
+        }
+
+        if ((littleStatus == StatusController.LittleStatus.PersonalInventory_InWorld) ||
+            (littleStatus == StatusController.LittleStatus.Crafting_InWorld) ||
+            (littleStatus == StatusController.LittleStatus.DisplayCabinet_InWorld) ||
+            (littleStatus == StatusController.LittleStatus.StorageChest_InWorld) ||
+            (littleStatus == StatusController.LittleStatus.SellingCrate_InWorld))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     // private helper function
@@ -284,15 +305,29 @@ public class StatusController : MonoBehaviour
     {
         return itemKeyMouseCarrying;
     }
-    public void StartMouseCarrying(string itemKey)
+    public InventoryLocation GetMouseCarryingOrigLoc()
     {
+        return origLocMouseCarrying;
+    }
+    public void StartMouseCarrying(string itemKey, InventoryLocation origLoc)
+    {
+        // Data
         craftOrInvMouseCarrying = true;
         itemKeyMouseCarrying = itemKey;
+        origLocMouseCarrying = origLoc;
+
+        // UI
+        mouseCarryingImageUI.sprite = ItemConsts.instance.GetAndLoadSpriteUrl(itemKey);
     }
     public void StopMouseCarrying()
     {
+        // Data
         craftOrInvMouseCarrying = false;
         itemKeyMouseCarrying = "";
+        origLocMouseCarrying = new InventoryLocation(); // TODO: is this the right way to clear?
+
+        // UI
+        mouseCarryingImageUI.sprite = AllInventoryController.instance.BLANK_SPRITE;
     }
 
     public void OpenCrafting(CraftingElemType elemT, CraftingSizeType sizeT)
@@ -350,7 +385,7 @@ public class StatusController : MonoBehaviour
             }
             else
             {
-                UnityEngine.Debug.Log("ERROR: StatusController.cs > OpenCrafting > something wrong with CraftingSizeType");
+                UnityEngine.Debug.Log("ERROR: StatusController.cs > CloseCrafting > something wrong with CraftingSizeType");
             }
         }
         else

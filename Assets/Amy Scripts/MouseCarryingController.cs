@@ -17,9 +17,8 @@ public class MouseCarryingController : MonoBehaviour
         (StatusController.BigStatus bigStatus, StatusController.LittleStatus littleStatus) = StatusController.instance.GetStatus();
 
         /* ---- CRAFTING ---- */
-        if (bigStatus == StatusController.BigStatus.InWorld && littleStatus == StatusController.LittleStatus.Crafting_InWorld)
+        if (StatusController.instance.IsInWorldAndInventoryStatus())
         {
-
             // Convert mouse position to canvas space
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 canvas.transform as RectTransform,

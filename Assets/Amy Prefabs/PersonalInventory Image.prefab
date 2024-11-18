@@ -235,8 +235,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 0
-  personalIndex: 0
+  inventoryLocation:
+    inventoryType: 0
+    personalInventoryIndex: 0
+    craftingSlotName: 0
+    keyDisplayCabinet: 0
+    displayCabinetSide: 0
+    displayCabinetIndex: 0
+    keyStorageChest: 0
+    storageChestIndex: 0
+    sellingCrateIndex: 0
 --- !u!1001 &3766392857849216559
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -363,8 +371,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 0
-  personalIndex: 4
+  inventoryLocation:
+    inventoryType: 0
+    personalInventoryIndex: 4
+    craftingSlotName: 0
+    keyDisplayCabinet: 0
+    displayCabinetSide: 0
+    displayCabinetIndex: 0
+    keyStorageChest: 0
+    storageChestIndex: 0
+    sellingCrateIndex: 0
 --- !u!1001 &4337704950479894975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -491,8 +507,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 0
-  personalIndex: 2
+  inventoryLocation:
+    inventoryType: 0
+    personalInventoryIndex: 2
+    craftingSlotName: 0
+    keyDisplayCabinet: 0
+    displayCabinetSide: 0
+    displayCabinetIndex: 0
+    keyStorageChest: 0
+    storageChestIndex: 0
+    sellingCrateIndex: 0
 --- !u!1001 &5654892972576331133
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -614,8 +638,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 0
-  personalIndex: 7
+  inventoryLocation:
+    inventoryType: 0
+    personalInventoryIndex: 7
+    craftingSlotName: 0
+    keyDisplayCabinet: 0
+    displayCabinetSide: 0
+    displayCabinetIndex: 0
+    keyStorageChest: 0
+    storageChestIndex: 0
+    sellingCrateIndex: 0
 --- !u!224 &5371539091501610883 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 356274110907556606, guid: ef95a9f7c50ec41f2a841246038f3491, type: 3}
@@ -747,8 +779,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 0
-  personalIndex: 5
+  inventoryLocation:
+    inventoryType: 0
+    personalInventoryIndex: 5
+    craftingSlotName: 0
+    keyDisplayCabinet: 0
+    displayCabinetSide: 0
+    displayCabinetIndex: 0
+    keyStorageChest: 0
+    storageChestIndex: 0
+    sellingCrateIndex: 0
 --- !u!1001 &7877137062910757582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -875,8 +915,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 0
-  personalIndex: 1
+  inventoryLocation:
+    inventoryType: 0
+    personalInventoryIndex: 1
+    craftingSlotName: 0
+    keyDisplayCabinet: 0
+    displayCabinetSide: 0
+    displayCabinetIndex: 0
+    keyStorageChest: 0
+    storageChestIndex: 0
+    sellingCrateIndex: 0
 --- !u!1001 &8394741721731649350
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1003,8 +1051,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 0
-  personalIndex: 8
+  inventoryLocation:
+    inventoryType: 0
+    personalInventoryIndex: 8
+    craftingSlotName: 0
+    keyDisplayCabinet: 0
+    displayCabinetSide: 0
+    displayCabinetIndex: 0
+    keyStorageChest: 0
+    storageChestIndex: 0
+    sellingCrateIndex: 0
 --- !u!1001 &8431589245002221559
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1131,8 +1187,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 0
-  personalIndex: 6
+  inventoryLocation:
+    inventoryType: 0
+    personalInventoryIndex: 6
+    craftingSlotName: 0
+    keyDisplayCabinet: 0
+    displayCabinetSide: 0
+    displayCabinetIndex: 0
+    keyStorageChest: 0
+    storageChestIndex: 0
+    sellingCrateIndex: 0
 --- !u!1001 &9063528043357921713
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1259,8 +1323,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 0
-  personalIndex: 3
+  inventoryLocation:
+    inventoryType: 0
+    personalInventoryIndex: 3
+    craftingSlotName: 0
+    keyDisplayCabinet: 0
+    displayCabinetSide: 0
+    displayCabinetIndex: 0
+    keyStorageChest: 0
+    storageChestIndex: 0
+    sellingCrateIndex: 0
 --- !u!1001 &9163461632402455912
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1382,8 +1454,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 0
-  personalIndex: 9
+  inventoryLocation:
+    inventoryType: 0
+    personalInventoryIndex: 9
+    craftingSlotName: 0
+    keyDisplayCabinet: 0
+    displayCabinetSide: 0
+    displayCabinetIndex: 0
+    keyStorageChest: 0
+    storageChestIndex: 0
+    sellingCrateIndex: 0
 --- !u!224 &8924615655636131734 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 356274110907556606, guid: ef95a9f7c50ec41f2a841246038f3491, type: 3}

@@ -2995,8 +2995,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 6
-  personalIndex: 0
+  inventoryLocation:
+    inventoryType: 1
+    personalInventoryIndex: 0
+    craftingSlotName: 8
+    keyDisplayCabinet: 0
+    displayCabinetSide: 0
+    displayCabinetIndex: 0
+    keyStorageChest: 0
+    storageChestIndex: 0
+    sellingCrateIndex: 0
 --- !u!1 &664152591
 GameObject:
   m_ObjectHideFlags: 0
@@ -3091,7 +3099,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   craftingElemType: 0
   craftingSizeType: 2
-  personalInventory: {fileID: 1703971490}
   waterEmptyImg: {fileID: 1898462044817064722}
   waterFullImg: {fileID: 1898462044817064721}
   ingredient1Slot: {fileID: 515627062}
@@ -4850,8 +4857,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 4
-  personalIndex: 0
+  inventoryLocation:
+    inventoryType: 1
+    personalInventoryIndex: 0
+    craftingSlotName: 6
+    keyDisplayCabinet: 0
+    displayCabinetSide: 0
+    displayCabinetIndex: 0
+    keyStorageChest: 0
+    storageChestIndex: 0
+    sellingCrateIndex: 0
 --- !u!1001 &1286082549
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5298,8 +5313,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotName: 5
-  personalIndex: 0
+  inventoryLocation:
+    inventoryType: 1
+    personalInventoryIndex: 0
+    craftingSlotName: 7
+    keyDisplayCabinet: 0
+    displayCabinetSide: 0
+    displayCabinetIndex: 0
+    keyStorageChest: 0
+    storageChestIndex: 0
+    sellingCrateIndex: 0
 --- !u!114 &1446608377 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5803645407087344605, guid: 29c33930cec874921b1854bebe4ae654, type: 3}
@@ -5651,6 +5674,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1ba93a8ea154802b7c5b1a4a9e1986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mPersonalInventory: {fileID: 1703971490}
+  mCraftingStation: {fileID: 8083867146656761162}
   BLANK_SPRITE: {fileID: 21300000, guid: ae4f940b9c9a447cb858fc1a8e497158, type: 3}
   debugPrintCrafting: 0
   debugPrintPersonalInventory: 0
@@ -6109,7 +6134,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   craftingElemType: 0
   craftingSizeType: 1
-  personalInventory: {fileID: 1703971490}
   waterEmptyImg: {fileID: 1198345465}
   waterFullImg: {fileID: 1198345464}
   ingredient1Slot: {fileID: 1446608377}
@@ -8818,7 +8842,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &3081954063897052743
 GameObject:
   m_ObjectHideFlags: 0
@@ -10653,7 +10677,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   craftingElemType: 0
   craftingSizeType: 0
-  personalInventory: {fileID: 1703971490}
   waterEmptyImg: {fileID: 2436511786301372520}
   waterFullImg: {fileID: 2436511786301372519}
   ingredient1Slot: {fileID: 899754350}

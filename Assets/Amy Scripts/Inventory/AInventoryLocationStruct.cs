@@ -3,7 +3,7 @@ using UnityEngine;
 
 public enum CraftingSlotName
 {
-    Personal,
+    Other,
     Ingredient1Key,
     Ingredient2Key,
     SimpleResultKey,
@@ -29,6 +29,7 @@ public enum InventoryType
     NSellingCrate,
 }
 
+[Serializable]
 public struct InventoryLocation : IEquatable<InventoryLocation> // postcard
 {
     public InventoryType inventoryType;
@@ -117,6 +118,18 @@ public struct InventoryLocation : IEquatable<InventoryLocation> // postcard
 
             _ => false
         };
+    }
+
+    // Define == operator
+    public static bool operator ==(InventoryLocation left, InventoryLocation right)
+    {
+        return left.Equals(right);
+    }
+
+    // When you define ==, you must also define != 
+    public static bool operator !=(InventoryLocation left, InventoryLocation right)
+    {
+        return !(left == right);
     }
 
     // Override GetHashCode - required for dictionary keys

@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 356274110907556606}
   - component: {fileID: 969485129873173134}
   - component: {fileID: 4940102076950075671}
+  - component: {fileID: 1801912525789494344}
   m_Layer: 5
   m_Name: BlankObj Image
-  m_TagString: Untagged
+  m_TagString: ClickMovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 459517635912407017}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,3 +76,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1801912525789494344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459517635912407017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3da9d88bc70fd446c88f5e36f0e55165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryLocation:
+    inventoryType: 0
+    personalInventoryIndex: 0
+    craftingSlotName: 0
+    keyDisplayCabinet: 0
+    displayCabinetSide: 0
+    displayCabinetIndex: 0
+    keyStorageChest: 0
+    storageChestIndex: 0
+    sellingCrateIndex: 0

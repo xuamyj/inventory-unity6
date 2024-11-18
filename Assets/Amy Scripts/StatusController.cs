@@ -103,6 +103,9 @@ public class StatusController : MonoBehaviour
     /* ---- ONE-OFFS: DRAGGED ---- */
     public OneoffChair oneoffChair;
 
+    /* ---- CONSTANTS: DRAGGED ---- */
+    public UnityEngine.Sprite BLANK_SPRITE;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -216,7 +219,7 @@ public class StatusController : MonoBehaviour
     }
 
     /* ---- CHEST ---- */
-    public void OpenInventory(InventoryType type)
+    public void OpenInventory(InventoryType type, int keyDisplayAndStorage)
     {
         if (bigStatus == BigStatus.InWorld && littleStatus == LittleStatus.Default_InWorld) // open inventory
         {
@@ -227,6 +230,8 @@ public class StatusController : MonoBehaviour
 
                 // UI
                 storageInventoryUI.gameObject.SetActive(true);
+                NStorageChest nStorageChest = storageInventoryUI.GetComponent<NStorageChest>();
+                nStorageChest.SetupStorageChestByKey(keyDisplayAndStorage);
             }
             else if (type == InventoryType.MDisplayCabinet)
             {
@@ -235,6 +240,9 @@ public class StatusController : MonoBehaviour
 
                 // UI
                 displayInventoryUI.gameObject.SetActive(true);
+                // TODO: add this back in when it's created
+                // MDisplayCabinet mDisplayCabinet = storageInventoryUI.GetComponent<MDisplayCabinet>();
+                // mDisplayCabinet.SetupDisplayCabinetByKey(keyDisplayAndStorage);
             }
             else if (type == InventoryType.NSellingCrate)
             {
@@ -324,10 +332,10 @@ public class StatusController : MonoBehaviour
         // Data
         craftOrInvMouseCarrying = false;
         itemKeyMouseCarrying = "";
-        origLocMouseCarrying = new InventoryLocation(); // TODO: is this the right way to clear?
+        origLocMouseCarrying = InventoryLocation.CreateInvalidLocation();
 
         // UI
-        mouseCarryingImageUI.sprite = AllInventoryController.instance.BLANK_SPRITE;
+        mouseCarryingImageUI.sprite = BLANK_SPRITE;
     }
 
     public void OpenCrafting(CraftingElemType elemT, CraftingSizeType sizeT)
@@ -342,14 +350,19 @@ public class StatusController : MonoBehaviour
             if (currCraftingSizeType == CraftingSizeType.Simple)
             {
                 simpleCraftingUI.gameObject.SetActive(true);
+                AllInventoryController.instance.mCurrCraftingStation = simpleCraftingUI.GetComponent<MCraftingStation>();
             }
             else if (currCraftingSizeType == CraftingSizeType.DecorOnly)
             {
                 decorOnlyCraftingUI.gameObject.SetActive(true);
+                AllInventoryController.instance.mCurrCraftingStation = decorOnlyCraftingUI.GetComponent<MCraftingStation>();
+
             }
             else if (currCraftingSizeType == CraftingSizeType.UpgradeDecor)
             {
                 upgradeDecorCraftingUI.gameObject.SetActive(true);
+                AllInventoryController.instance.mCurrCraftingStation = upgradeDecorCraftingUI.GetComponent<MCraftingStation>();
+
             }
             else
             {

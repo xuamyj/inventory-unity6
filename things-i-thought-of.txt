@@ -1,7 +1,7 @@
 
 for bigger boxes how to get the clickable to be the full box without stretching image?
 gray and ungray personalInventory image
-IMPORTANT: move your things in crafting back to the inventory!
+IMPORTANT: move your things in crafting back to the inventory! (funny related issue: if you close it while holding something, you permanently stick one on the camera)
 
 dialogue:
 isadora conversation reduce 3 silver coins / add 1 support pt (and possibly be slightly different if replay)
@@ -10,15 +10,11 @@ later add full name, character image
 give the background an image (aesth)
 
 box: 
-add stardew navigation (i think esc to exit?) 
+add stardew navigation (i think E or esc to exit?) 
 ofc, move items around (and eventually to other inventories)
-omg need duplicates :O 
+omg need stacking :O 
 
 create actual consquence for running out of energy (possibly new screen)
-
-De:
-code review for crafting?
-some of these "Controller"s should actually be "Info"s i think. but 1 how to refactor, 2 will i have to 'redrag'/retype everything
 
 --
 

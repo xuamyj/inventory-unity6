@@ -4,14 +4,15 @@ public class AllInventoryController : MonoBehaviour
 {
     /* ---- DATA: DRAGGED ---- */
     public MPersonalInventory mPersonalInventory;
-    public MCraftingStation mCraftingStation; // TODO: this is not going to work if you change the crafting size
+    public NStorageChest nStorageChest;
 
-    /* ---- CONSTANTS: DRAGGED ---- */
-    public UnityEngine.Sprite BLANK_SPRITE;
+    /* ---- DATA: set in StatusController, don't drag these ---- */
+    public MCraftingStation mCurrCraftingStation;
 
     /* ---- DEBUG PRINT ---- */
     public bool debugPrintCrafting;
     public bool debugPrintPersonalInventory;
+    public bool debugPrintStorageChest;
 
     /* ---- STATIC ---- */
     public static AllInventoryController instance { get; private set; }
@@ -47,6 +48,13 @@ public class AllInventoryController : MonoBehaviour
             UnityEngine.Debug.Log("PERSONAL_INVENTORY_DEBUG: " + text);
         }
     }
+    public void StorageChestDebugPrint(string text)
+    {
+        if (debugPrintStorageChest)
+        {
+            UnityEngine.Debug.Log("STORAGE_CHEST: " + text);
+        }
+    }
 
     /* ---- ACTUAL CONTROLLER: HELPERS ---- */
     private string GetItemKeyFromLocHelper(InventoryLocation loc)
@@ -58,7 +66,7 @@ public class AllInventoryController : MonoBehaviour
         }
         else if (loc.inventoryType == InventoryType.MCraftingStation)
         {
-            return mCraftingStation.GetItemKeyFromSlot(loc.craftingSlotName);
+            return mCurrCraftingStation.GetItemKeyFromSlot(loc.craftingSlotName);
         }
         else if (loc.inventoryType == InventoryType.MDisplayCabinet)
         {
@@ -66,7 +74,7 @@ public class AllInventoryController : MonoBehaviour
         }
         else if (loc.inventoryType == InventoryType.NStorageChest)
         {
-            // these guys don't exist so add this later
+            return nStorageChest.GetItemKeyFromIndex(loc.storageChestIndex);
         }
         else if (loc.inventoryType == InventoryType.NSellingCrate)
         {
@@ -87,21 +95,13 @@ public class AllInventoryController : MonoBehaviour
         }
         else if (loc.inventoryType == InventoryType.MCraftingStation)
         {
-            mCraftingStation.TryAddItemToSpecificSlot(loc.craftingSlotName, itemKey);
+            mCurrCraftingStation.TryAddItemToSpecificSlot(loc.craftingSlotName, itemKey);
         }
         else if (loc.inventoryType == InventoryType.MDisplayCabinet)
         {
             // these guys don't exist so add this later
         }
-        else if (loc.inventoryType == InventoryType.NStorageChest)
-        {
-            // these guys don't exist so add this later
-        }
-        else if (loc.inventoryType == InventoryType.NSellingCrate)
-        {
-            // these guys don't exist so add this later
-        }
-        else
+        else // no StorageChest or SellingCrate, those use ShoveFromPersonalInventoryHelper
         {
             UnityEngine.Debug.Log("ERROR: AllInventoryController.cs > PutItemKeyInLocHelper > something wrong with InventoryLocation");
         }
@@ -111,11 +111,11 @@ public class AllInventoryController : MonoBehaviour
     {
         if (loc.inventoryType == InventoryType.MPersonalInventory)
         {
-            mPersonalInventory.RemoveItemFromIndexHelper(loc.personalInventoryIndex);
+            mPersonalInventory.TryRemoveItemFromIndex(loc.personalInventoryIndex);
         }
         else if (loc.inventoryType == InventoryType.MCraftingStation)
         {
-            mCraftingStation.RemoveItemFromSlotHelper(loc.craftingSlotName);
+            mCurrCraftingStation.TryRemoveItemFromSlot(loc.craftingSlotName);
         }
         else if (loc.inventoryType == InventoryType.MDisplayCabinet)
         {
@@ -123,7 +123,7 @@ public class AllInventoryController : MonoBehaviour
         }
         else if (loc.inventoryType == InventoryType.NStorageChest)
         {
-            // these guys don't exist so add this later
+            nStorageChest.TryRemoveItemFromIndex(loc.storageChestIndex);
         }
         else if (loc.inventoryType == InventoryType.NSellingCrate)
         {
@@ -146,7 +146,7 @@ public class AllInventoryController : MonoBehaviour
         }
         else if (loc.inventoryType == InventoryType.MCraftingStation)
         {
-            return mCraftingStation.IsValidCraftingSlotForItem(loc.craftingSlotName, itemKey);
+            return mCurrCraftingStation.IsValidCraftingSlotForItem(loc.craftingSlotName, itemKey);
         }
         else
         {
@@ -155,12 +155,12 @@ public class AllInventoryController : MonoBehaviour
         }
     }
 
-    private bool ShoveFromPersonalInventoryHelper(StatusController.LittleStatus littleStatus, string carryingItemKey)
+    private bool ShoveFromPersonalInventoryHelper(StatusController.LittleStatus littleStatus, string clickedItemKey, int clickedIndex)
     {
         if (littleStatus == StatusController.LittleStatus.StorageChest_InWorld)
         {
-            // TODO: these guys don't exist so add this later
-            return true; // should be: return storageChest.Try...()
+            bool result = nStorageChest.TryAddItemToEmptySlot(clickedItemKey) && mPersonalInventory.TryRemoveItemFromIndex(clickedIndex);
+            return result;
         }
         else if (littleStatus == StatusController.LittleStatus.SellingCrate_InWorld)
         {
@@ -275,18 +275,31 @@ public class AllInventoryController : MonoBehaviour
             return false;
         }
 
-        string carryingItemKey = StatusController.instance.GetMouseCarryingItemKey();
+        AllInventoryController.instance.CraftingDebugPrint("entered TryShoveThing" + clickInventoryLocation);
+
+        string clickedItemKey = GetItemKeyFromLocHelper(clickInventoryLocation);
+        if (clickedItemKey == "") // blank square
+        {
+            UnityEngine.Debug.Log("Clicked on blank square, do nothing");
+            return false;
+        }
 
         // here are the available types of shove
         if (clickInventoryLocation.inventoryType == InventoryType.MPersonalInventory)
         {
-            return ShoveFromPersonalInventoryHelper(littleStatus, carryingItemKey);
+            int clickedIndex = clickInventoryLocation.personalInventoryIndex;
+            return ShoveFromPersonalInventoryHelper(littleStatus, clickedItemKey, clickedIndex);
         }
-        else if (
-            (clickInventoryLocation.inventoryType == InventoryType.NStorageChest && littleStatus == StatusController.LittleStatus.StorageChest_InWorld) ||
-            (clickInventoryLocation.inventoryType == InventoryType.NSellingCrate && littleStatus == StatusController.LittleStatus.SellingCrate_InWorld))
+        else if (clickInventoryLocation.inventoryType == InventoryType.NStorageChest && littleStatus == StatusController.LittleStatus.StorageChest_InWorld)
         {
-            return mPersonalInventory.TryAddItemToEmptySlot(carryingItemKey);
+            int clickedIndex = clickInventoryLocation.storageChestIndex;
+            bool result = mPersonalInventory.TryAddItemToEmptySlot(clickedItemKey) && nStorageChest.TryRemoveItemFromIndex(clickedIndex);
+            return result;
+        }
+        else if (clickInventoryLocation.inventoryType == InventoryType.NSellingCrate && littleStatus == StatusController.LittleStatus.SellingCrate_InWorld)
+        {
+            // TODO: these guys don't exist so add this later
+            return true; // should be similar to storage chest ^
         }
         else
         {

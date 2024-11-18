@@ -189,7 +189,7 @@ public class PlayerController : MonoBehaviour
             if (obj && obj.CompareTag("Chest"))
             {
                 ChestInfo chest = obj.GetComponent<ChestInfo>();
-                StatusController.instance.OpenInventory(chest.inventoryType);
+                StatusController.instance.OpenInventory(chest.inventoryType, chest.keyDisplayAndStorage);
             }
 
             /* ---- CRAFTING ---- */

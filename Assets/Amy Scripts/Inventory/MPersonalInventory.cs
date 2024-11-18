@@ -46,13 +46,13 @@ public class MPersonalInventory : MonoBehaviour
         // UI
         visibleSlots[index].GetComponent<UnityEngine.UI.Image>().sprite = ItemConsts.instance.GetAndLoadSpriteUrl(itemKey);
     }
-    public void RemoveItemFromIndexHelper(int index) // TODO: keep public or temp? 
+    private void RemoveItemFromIndexHelper(int index)
     {
         // Data
         realSlots[index] = "";
 
         // UI
-        visibleSlots[index].GetComponent<UnityEngine.UI.Image>().sprite = AllInventoryController.instance.BLANK_SPRITE;
+        visibleSlots[index].GetComponent<UnityEngine.UI.Image>().sprite = StatusController.instance.BLANK_SPRITE;
     }
 
     public HashSet<int> GetLockedIndexes()
@@ -68,26 +68,26 @@ public class MPersonalInventory : MonoBehaviour
         lockedIndexes.Remove(index);
     }
 
-    public bool TryRemoveLockedItem(string carryingItemKey)
-    {
-        // in theory, well.. for now, this function always runs, in the future could add code to take care of StatusController
+    // public bool TryRemoveLockedItem(string carryingItemKey)
+    // {
+    //     // in theory, well.. for now, this function always runs, in the future could add code to take care of StatusController
 
-        AllInventoryController.instance.PersonalInventoryDebugPrint("Hit TryRemoveLockedItem( " + carryingItemKey + " )");
+    //     AllInventoryController.instance.PersonalInventoryDebugPrint("Hit TryRemoveLockedItem( " + carryingItemKey + " )");
 
-        foreach (int index in lockedIndexes)
-        {
-            if (carryingItemKey == realSlots[index])
-            {
-                UnlockIndex(index);
-                RemoveItemFromIndexHelper(index);
+    //     foreach (int index in lockedIndexes)
+    //     {
+    //         if (carryingItemKey == realSlots[index])
+    //         {
+    //             UnlockIndex(index);
+    //             RemoveItemFromIndexHelper(index);
 
-                AllInventoryController.instance.PersonalInventoryDebugPrint("True! index " + index);
-                return true;
-            }
-        }
-        AllInventoryController.instance.PersonalInventoryDebugPrint("False!");
-        return false;
-    }
+    //             AllInventoryController.instance.PersonalInventoryDebugPrint("True! index " + index);
+    //             return true;
+    //         }
+    //     }
+    //     AllInventoryController.instance.PersonalInventoryDebugPrint("False!");
+    //     return false;
+    // }
 
     public bool TryAddItemToEmptySlot(string itemKey)
     {
@@ -106,6 +106,18 @@ public class MPersonalInventory : MonoBehaviour
             }
         }
         AllInventoryController.instance.PersonalInventoryDebugPrint("False!");
+        return false;
+    }
+
+    public bool TryRemoveItemFromIndex(int index)
+    {
+        // in theory, well.. for now, this function always runs, in the future could add code to take care of StatusController
+
+        if (realSlots[index] != "")
+        {
+            RemoveItemFromIndexHelper(index);
+            return true;
+        }
         return false;
     }
 

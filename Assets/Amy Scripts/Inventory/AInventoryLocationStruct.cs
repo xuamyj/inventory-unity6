@@ -27,6 +27,7 @@ public enum InventoryType
     MDisplayCabinet,
     NStorageChest,
     NSellingCrate,
+    Invalid,
 }
 
 [Serializable]
@@ -80,6 +81,11 @@ public struct InventoryLocation : IEquatable<InventoryLocation> // postcard
     {
         inventoryType = InventoryType.NSellingCrate,
         sellingCrateIndex = index
+    };
+
+    public static InventoryLocation CreateInvalidLocation() => new InventoryLocation
+    {
+        inventoryType = InventoryType.Invalid,
     };
 
     // Claude wrote these below

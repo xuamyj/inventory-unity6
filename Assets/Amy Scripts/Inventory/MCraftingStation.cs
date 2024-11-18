@@ -52,19 +52,19 @@ public class MCraftingStation : MonoBehaviour
         slotNameToActualSlot[CraftingSlotName.UpgradeIngr2Key] = upgradeIngr2Slot;
         slotNameToActualSlot[CraftingSlotName.UpgradeResultKey] = upgradeResultSlot;
 
-        ingredient1Slot.sprite = AllInventoryController.instance.BLANK_SPRITE;
-        ingredient2Slot.sprite = AllInventoryController.instance.BLANK_SPRITE;
-        simpleResultSlot.sprite = AllInventoryController.instance.BLANK_SPRITE;
+        ingredient1Slot.sprite = StatusController.instance.BLANK_SPRITE;
+        ingredient2Slot.sprite = StatusController.instance.BLANK_SPRITE;
+        simpleResultSlot.sprite = StatusController.instance.BLANK_SPRITE;
         if (craftingSizeType == StatusController.CraftingSizeType.DecorOnly || craftingSizeType == StatusController.CraftingSizeType.UpgradeDecor)
         {
-            decorIngrSlot.sprite = AllInventoryController.instance.BLANK_SPRITE;
-            decorResultSlot.sprite = AllInventoryController.instance.BLANK_SPRITE;
+            decorIngrSlot.sprite = StatusController.instance.BLANK_SPRITE;
+            decorResultSlot.sprite = StatusController.instance.BLANK_SPRITE;
         }
         if (craftingSizeType == StatusController.CraftingSizeType.UpgradeDecor)
         {
-            upgradeIngr1Slot.sprite = AllInventoryController.instance.BLANK_SPRITE;
-            upgradeIngr2Slot.sprite = AllInventoryController.instance.BLANK_SPRITE;
-            upgradeResultSlot.sprite = AllInventoryController.instance.BLANK_SPRITE;
+            upgradeIngr1Slot.sprite = StatusController.instance.BLANK_SPRITE;
+            upgradeIngr2Slot.sprite = StatusController.instance.BLANK_SPRITE;
+            upgradeResultSlot.sprite = StatusController.instance.BLANK_SPRITE;
         }
     }
 
@@ -94,13 +94,13 @@ public class MCraftingStation : MonoBehaviour
         // UI
         slotNameToActualSlot[slotName].sprite = ItemConsts.instance.GetAndLoadSpriteUrl(itemKey);
     }
-    public void RemoveItemFromSlotHelper(CraftingSlotName slotName) // TODO: keep public or temp? 
+    private void RemoveItemFromSlotHelper(CraftingSlotName slotName)
     {
         // Data
         slotNameToItemKey[slotName] = "";
 
         // UI
-        slotNameToActualSlot[slotName].sprite = AllInventoryController.instance.BLANK_SPRITE;
+        slotNameToActualSlot[slotName].sprite = StatusController.instance.BLANK_SPRITE;
     }
 
     public bool IsValidCraftingSlotForItem(CraftingSlotName slotName, string itemKey)
@@ -133,6 +133,18 @@ public class MCraftingStation : MonoBehaviour
             return true;
         }
         // otherwise, not a valid combo
+        return false;
+    }
+
+    public bool TryRemoveItemFromSlot(CraftingSlotName slotName)
+    {
+        // in theory, well.. for now, this function always runs, in the future could add code to take care of StatusController
+
+        if (slotNameToItemKey[slotName] != "")
+        {
+            RemoveItemFromSlotHelper(slotName);
+            return true;
+        }
         return false;
     }
 

@@ -155,21 +155,48 @@ public class AllInventoryController : MonoBehaviour
         }
     }
 
-    private bool ShoveFromPersonalInventoryHelper(StatusController.LittleStatus littleStatus, string clickedItemKey, int clickedIndex)
+    private bool ShoveRemoveFromLocHelper(InventoryLocation fromLoc, StatusController.LittleStatus littleStatus, string itemKey)
     {
-        if (littleStatus == StatusController.LittleStatus.StorageChest_InWorld)
+        if (fromLoc.inventoryType == InventoryType.MPersonalInventory)
         {
-            bool result = nStorageChest.TryAddItemToEmptySlot(clickedItemKey) && mPersonalInventory.TryRemoveItemFromIndex(clickedIndex);
-            return result;
+            int clickedIndex = fromLoc.personalInventoryIndex;
+            return mPersonalInventory.TryRemoveItemFromIndex(clickedIndex);
         }
-        else if (littleStatus == StatusController.LittleStatus.SellingCrate_InWorld)
+        else if (fromLoc.inventoryType == InventoryType.NStorageChest && littleStatus == StatusController.LittleStatus.StorageChest_InWorld)
+        {
+            int clickedIndex = fromLoc.storageChestIndex;
+            return nStorageChest.TryRemoveItemFromIndex(clickedIndex);
+        }
+        else if (fromLoc.inventoryType == InventoryType.NSellingCrate && littleStatus == StatusController.LittleStatus.SellingCrate_InWorld)
+        {
+            // TODO: these guys don't exist so add this later
+            return true; // should be similar to storage chest ^
+        }
+        else
+        {
+            UnityEngine.Debug.Log("ERROR: AllInventoryController.cs > ShoveRemoveFromLocHelper > something wrong with LittleStatus and InventoryLocation");
+            return false;
+        }
+    }
+
+    private bool ShoveAddToLocHelper(InventoryLocation fromLoc, StatusController.LittleStatus littleStatus, string itemKey)
+    {
+        if (fromLoc.inventoryType == InventoryType.MPersonalInventory && littleStatus == StatusController.LittleStatus.StorageChest_InWorld) // from PersonalInventory to StorageChest
+        {
+            return nStorageChest.TryAddItemToEmptySlot(itemKey);
+        }
+        else if (fromLoc.inventoryType == InventoryType.MPersonalInventory && littleStatus == StatusController.LittleStatus.SellingCrate_InWorld) // from PersonalInventory to SellingCrate
         {
             // TODO: these guys don't exist so add this later
             return true; // should be: return sellingCrate.Try...()
         }
+        else if (fromLoc.inventoryType == InventoryType.NStorageChest || fromLoc.inventoryType == InventoryType.NSellingCrate) // from StorageChest OR SellingCrate, send to PersonalInventory
+        {
+            return mPersonalInventory.TryAddItemToEmptySlot(itemKey);
+        }
         else
         {
-            UnityEngine.Debug.Log("ERROR: AllInventoryController.cs > ShoveFromPersonalInventoryHelper > something wrong with LittleStatus");
+            UnityEngine.Debug.Log("ERROR: AllInventoryController.cs > ShoveAddToLocHelper > something wrong with LittleStatus and InventoryLocation");
             return false;
         }
     }
@@ -285,27 +312,8 @@ public class AllInventoryController : MonoBehaviour
         }
 
         // here are the available types of shove
-        if (clickInventoryLocation.inventoryType == InventoryType.MPersonalInventory)
-        {
-            int clickedIndex = clickInventoryLocation.personalInventoryIndex;
-            return ShoveFromPersonalInventoryHelper(littleStatus, clickedItemKey, clickedIndex);
-        }
-        else if (clickInventoryLocation.inventoryType == InventoryType.NStorageChest && littleStatus == StatusController.LittleStatus.StorageChest_InWorld)
-        {
-            int clickedIndex = clickInventoryLocation.storageChestIndex;
-            bool result = mPersonalInventory.TryAddItemToEmptySlot(clickedItemKey) && nStorageChest.TryRemoveItemFromIndex(clickedIndex);
-            return result;
-        }
-        else if (clickInventoryLocation.inventoryType == InventoryType.NSellingCrate && littleStatus == StatusController.LittleStatus.SellingCrate_InWorld)
-        {
-            // TODO: these guys don't exist so add this later
-            return true; // should be similar to storage chest ^
-        }
-        else
-        {
-            UnityEngine.Debug.Log("ERROR: AllInventoryController.cs > TryShoveThing > something wrong with LittleStatus and InventoryLocation");
-            return false;
-        }
+        bool result = ShoveRemoveFromLocHelper(clickInventoryLocation, littleStatus, clickedItemKey) && ShoveAddToLocHelper(clickInventoryLocation, littleStatus, clickedItemKey);
+        return result;
     }
 
     public bool ClickOnMovable(InventoryLocation inventoryLocation)

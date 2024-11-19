@@ -61,16 +61,16 @@ public class AInventoryData : MonoBehaviour
         nextDisplayCabinetKey = 2;
     }
 
-    public void MakeNewStorageChest()
+    public int MakeNewStorageChest()
     {
         storageChests.Add(new StorageChestData(nextStorageChestKey));
-        nextStorageChestKey++;
+        return nextStorageChestKey++;
     }
 
-    public void MakeNewDisplayCabinet()
+    public int MakeNewDisplayCabinet()
     {
         displayCabinets.Add(new DisplayCabinetData(nextDisplayCabinetKey));
-        nextDisplayCabinetKey++;
+        return nextDisplayCabinetKey++;
     }
 
     public StorageChestData GetStorageChestByKey(int key)

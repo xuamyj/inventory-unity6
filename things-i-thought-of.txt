@@ -1,4 +1,6 @@
 
+add stardew navigation (i think E or esc to exit?) 
+ofc, move items around (and eventually to other inventories)
 for bigger boxes how to get the clickable to be the full box without stretching image?
 gray and ungray personalInventory image
 IMPORTANT: move your things in crafting back to the inventory! (funny related issue: if you close it while holding something, you permanently stick one on the camera)
@@ -10,9 +12,8 @@ later add full name, character image
 give the background an image (aesth)
 
 box: 
-add stardew navigation (i think E or esc to exit?) 
-ofc, move items around (and eventually to other inventories)
 omg need stacking :O 
+ids for item order and button to reorder
 
 create actual consquence for running out of energy (possibly new screen)
 

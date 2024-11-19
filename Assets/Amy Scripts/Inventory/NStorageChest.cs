@@ -39,7 +39,8 @@ public class NStorageChest : MonoBehaviour
 
     private void Awake()
     {
-        SetupStorageChestByKey(0); // default to 0 at the beginning, StatusController will update when you open on
+        currKey = 0; // default to 0 at the beginning, StatusController will update when you open one
+        currRealSlots = AInventoryData.instance.GetStorageChestByKey(currKey).realSlots;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

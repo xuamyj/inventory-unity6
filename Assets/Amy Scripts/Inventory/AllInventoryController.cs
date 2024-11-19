@@ -157,6 +157,7 @@ public class AllInventoryController : MonoBehaviour
 
     private bool ShoveFromPersonalInventoryHelper(StatusController.LittleStatus littleStatus, string clickedItemKey, int clickedIndex)
     {
+        // -- Dennis -- this implementation feels weird to me? like it would make more sense to have the pick up / shove still be different... that way you don't need like a shove from personal inventory, shove from storage storage chest, shove from selling crate. 
         if (littleStatus == StatusController.LittleStatus.StorageChest_InWorld)
         {
             bool result = nStorageChest.TryAddItemToEmptySlot(clickedItemKey) && mPersonalInventory.TryRemoveItemFromIndex(clickedIndex);
@@ -292,6 +293,7 @@ public class AllInventoryController : MonoBehaviour
         }
         else if (clickInventoryLocation.inventoryType == InventoryType.NStorageChest && littleStatus == StatusController.LittleStatus.StorageChest_InWorld)
         {
+            // -- Dennis -- should chests reorder themselves when shoved? or shoudl there be "holes" where the item used to be?                                                                                                                                                                       
             int clickedIndex = clickInventoryLocation.storageChestIndex;
             bool result = mPersonalInventory.TryAddItemToEmptySlot(clickedItemKey) && nStorageChest.TryRemoveItemFromIndex(clickedIndex);
             return result;

@@ -14,17 +14,15 @@ public class NStorageChest : MonoBehaviour
     public void SetupStorageChestByKey(int key)
     {
         currKey = key;
-        currRealSlots = AInventoryData.instance.GetStorageChestByKey(currKey).realSlots;
+        currRealSlots = AInventoryData.instance.GetStorageChestByKey(currKey).realSlots; // -- Dennis -- So I think it's a bit mixed on whether you should keep around the actual raw reference to the real slots array, or whether you should just lookit up every time from AInventoryData.. 
 
         // update the SpriteClickMovables
         for (int i = 0; i < visibleSlots.Capacity; i++)
         {
             GameObject obj = visibleSlots[i];
             string itemKey = currRealSlots[i];
-            if (obj.CompareTag("ClickMovable"))
-            {
-                obj.GetComponent<SpriteClickMovable>().inventoryLocation = InventoryLocation.CreateStorageChestLocation(key, i);
-            }
+
+            obj.GetComponent<SpriteClickMovable>().inventoryLocation = InventoryLocation.CreateStorageChestLocation(key, i);
 
             if (itemKey != "") // item is there!
             {
@@ -41,6 +39,8 @@ public class NStorageChest : MonoBehaviour
     {
         currKey = 0; // default to 0 at the beginning, StatusController will update when you open one
         currRealSlots = AInventoryData.instance.GetStorageChestByKey(currKey).realSlots;
+
+        // -- Dennis -- this is also weird to me, why not initialize to just an empty array instead?
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

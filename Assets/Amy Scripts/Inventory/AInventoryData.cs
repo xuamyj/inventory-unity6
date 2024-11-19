@@ -9,8 +9,8 @@ public class StorageChestData
     public int keyStorage;
 
     public StorageChestData(int key)
-            : base() // calls base first
-    {
+            : base() // calls base first 
+    {// -- Dennis - tbh i don't think you need to call base...? 
         realSlots = new List<string>(Enumerable.Repeat("", 24));
         keyStorage = key;
     }
@@ -41,7 +41,7 @@ public class AInventoryData : MonoBehaviour
     /* ---- DATA ---- */
     // currently only has it for StorageChest and DisplayCabinet
     public List<StorageChestData> storageChests;
-    int nextStorageChestKey;
+    int nextStorageChestKey; // -- Dennis -- this is a good way to increment ids for chests! smart
     public List<DisplayCabinetData> displayCabinets;
     int nextDisplayCabinetKey;
 
@@ -65,12 +65,13 @@ public class AInventoryData : MonoBehaviour
     {
         storageChests.Add(new StorageChestData(nextStorageChestKey));
         nextStorageChestKey++;
+        // -- Dennis -- probably shoudl return the storage chest key that you just made here
     }
 
-    public void MakeNewDisplayCabinet()
+    public int MakeNewDisplayCabinet()
     {
         displayCabinets.Add(new DisplayCabinetData(nextDisplayCabinetKey));
-        nextDisplayCabinetKey++;
+        return nextDisplayCabinetKey++;
     }
 
     public StorageChestData GetStorageChestByKey(int key)

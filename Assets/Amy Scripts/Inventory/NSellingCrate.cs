@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class NSellingCrate : MonoBehaviour
 {
-    /* ---- DATA: set in Awake() ---- */
+    /* ---- DATA: set in StatusController, don't drag these ---- */
     public SellingCrateData sellingCrateData;
 
     /* ---- UI: DRAGGED ---- */

@@ -5,6 +5,7 @@ public class AllInventoryController : MonoBehaviour
     /* ---- DATA: DRAGGED ---- */
     public MPersonalInventory mPersonalInventory;
     public NStorageChest nStorageChest;
+    public MDisplayCabinet mDisplayCabinet;
     public NSellingCrate nSellingCrate;
 
     /* ---- DATA: set in StatusController, don't drag these ---- */
@@ -14,6 +15,7 @@ public class AllInventoryController : MonoBehaviour
     public bool debugPrintCrafting;
     public bool debugPrintPersonalInventory;
     public bool debugPrintStorageChest;
+    public bool debugPrintDisplayCabinet;
 
     /* ---- STATIC ---- */
     public static AllInventoryController instance { get; private set; }
@@ -56,6 +58,13 @@ public class AllInventoryController : MonoBehaviour
             UnityEngine.Debug.Log("STORAGE_CHEST: " + text);
         }
     }
+    public void DisplayCabinetDebugPrint(string text)
+    {
+        if (debugPrintDisplayCabinet)
+        {
+            UnityEngine.Debug.Log("DISPLAY_CABINET: " + text);
+        }
+    }
 
     /* ---- ACTUAL CONTROLLER: HELPERS ---- */
     private string GetItemKeyFromLocHelper(InventoryLocation loc)
@@ -71,7 +80,7 @@ public class AllInventoryController : MonoBehaviour
         }
         else if (loc.inventoryType == InventoryType.MDisplayCabinet)
         {
-            // these guys don't exist so add this later
+            return mDisplayCabinet.GetItemKeyFromLoc(loc);
         }
         else if (loc.inventoryType == InventoryType.NStorageChest)
         {
@@ -100,7 +109,7 @@ public class AllInventoryController : MonoBehaviour
         }
         else if (loc.inventoryType == InventoryType.MDisplayCabinet)
         {
-            // these guys don't exist so add this later
+            mDisplayCabinet.TryAddItemToSpecificLoc(loc, itemKey);
         }
         else // no StorageChest or SellingCrate, those use ShoveFromPersonalInventoryHelper
         {
@@ -120,7 +129,7 @@ public class AllInventoryController : MonoBehaviour
         }
         else if (loc.inventoryType == InventoryType.MDisplayCabinet)
         {
-            // these guys don't exist so add this later
+            mDisplayCabinet.TryRemoveItemFromLoc(loc);
         }
         else // no StorageChest or SellingCrate, those use ShoveFromPersonalInventoryHelper
         {

@@ -240,9 +240,8 @@ public class StatusController : MonoBehaviour
 
                 // UI
                 displayInventoryUI.gameObject.SetActive(true);
-                // TODO: add this back in when it's created
-                // MDisplayCabinet mDisplayCabinet = storageInventoryUI.GetComponent<MDisplayCabinet>();
-                // mDisplayCabinet.SetupDisplayCabinetByKey(keyDisplayAndStorage);
+                MDisplayCabinet mDisplayCabinet = displayInventoryUI.GetComponent<MDisplayCabinet>();
+                mDisplayCabinet.SetupDisplayCabinetByKey(keyDisplayAndStorage);
             }
             else if (type == InventoryType.NSellingCrate)
             {

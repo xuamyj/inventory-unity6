@@ -17,7 +17,7 @@ public enum CraftingSlotName
 public enum DisplayCabinetSide
 {
     DisplaySide,
-    NonDisplaySide,
+    ExtraSide,
 }
 
 public enum InventoryType

@@ -251,6 +251,8 @@ public class StatusController : MonoBehaviour
 
                 // UI
                 sellingInventoryUI.gameObject.SetActive(true);
+                NSellingCrate nSellingCrate = sellingInventoryUI.GetComponent<NSellingCrate>();
+                nSellingCrate.SetupSellingCrate();
             }
             else
             {

@@ -21,6 +21,17 @@ public class StorageChestData
     }
 }
 
+public class SellingCrateData
+{
+    public List<string> realSlots;
+
+    public SellingCrateData()
+            : base() // calls base first
+    {
+        realSlots = new List<string>(Enumerable.Repeat("", 9));
+    }
+}
+
 public class DisplayCabinetData
 {
     public List<string> displaySlots;
@@ -44,11 +55,14 @@ public class AInventoryData : MonoBehaviour
     int nextStorageChestKey;
     public List<DisplayCabinetData> displayCabinets;
     int nextDisplayCabinetKey;
+    public SellingCrateData sellingCrate;
 
     /* ---- STATIC ---- */
     public static AInventoryData instance { get; private set; }
     private void Awake()
     {
+        // UnityEngine.Debug.Log("INIT HERE AInventoryData start");
+
         instance = this;
         storageChests = new List<StorageChestData>();
         storageChests.Add(new StorageChestData(0));
@@ -59,6 +73,10 @@ public class AInventoryData : MonoBehaviour
         displayCabinets.Add(new DisplayCabinetData(0));
         displayCabinets.Add(new DisplayCabinetData(1));
         nextDisplayCabinetKey = 2;
+
+        sellingCrate = new SellingCrateData();
+
+        // UnityEngine.Debug.Log("INIT HERE AInventoryData end");
     }
 
     public int MakeNewStorageChest()
@@ -81,5 +99,10 @@ public class AInventoryData : MonoBehaviour
     public DisplayCabinetData GetDisplayCabinetByKey(int key)
     {
         return displayCabinets[key];
+    }
+
+    public SellingCrateData GetSellingCrate()
+    {
+        return sellingCrate;
     }
 }

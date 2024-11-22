@@ -5,6 +5,7 @@ public class AllInventoryController : MonoBehaviour
     /* ---- DATA: DRAGGED ---- */
     public MPersonalInventory mPersonalInventory;
     public NStorageChest nStorageChest;
+    public NSellingCrate nSellingCrate;
 
     /* ---- DATA: set in StatusController, don't drag these ---- */
     public MCraftingStation mCurrCraftingStation;
@@ -78,7 +79,7 @@ public class AllInventoryController : MonoBehaviour
         }
         else if (loc.inventoryType == InventoryType.NSellingCrate)
         {
-            // these guys don't exist so add this later
+            return nSellingCrate.GetItemKeyFromIndex(loc.sellingCrateIndex);
         }
         else
         {
@@ -121,15 +122,7 @@ public class AllInventoryController : MonoBehaviour
         {
             // these guys don't exist so add this later
         }
-        else if (loc.inventoryType == InventoryType.NStorageChest)
-        {
-            nStorageChest.TryRemoveItemFromIndex(loc.storageChestIndex);
-        }
-        else if (loc.inventoryType == InventoryType.NSellingCrate)
-        {
-            // these guys don't exist so add this later
-        }
-        else
+        else // no StorageChest or SellingCrate, those use ShoveFromPersonalInventoryHelper
         {
             UnityEngine.Debug.Log("ERROR: AllInventoryController.cs > RemoveItemFromLocHelper > something wrong with InventoryLocation");
         }
@@ -169,8 +162,8 @@ public class AllInventoryController : MonoBehaviour
         }
         else if (fromLoc.inventoryType == InventoryType.NSellingCrate && littleStatus == StatusController.LittleStatus.SellingCrate_InWorld)
         {
-            // TODO: these guys don't exist so add this later
-            return true; // should be similar to storage chest ^
+            int clickedIndex = fromLoc.sellingCrateIndex;
+            return nSellingCrate.TryRemoveItemFromIndex(clickedIndex);
         }
         else
         {
@@ -187,8 +180,7 @@ public class AllInventoryController : MonoBehaviour
         }
         else if (fromLoc.inventoryType == InventoryType.MPersonalInventory && littleStatus == StatusController.LittleStatus.SellingCrate_InWorld) // from PersonalInventory to SellingCrate
         {
-            // TODO: these guys don't exist so add this later
-            return true; // should be: return sellingCrate.Try...()
+            return nSellingCrate.TryAddItemToEmptySlot(itemKey);
         }
         else if (fromLoc.inventoryType == InventoryType.NStorageChest || fromLoc.inventoryType == InventoryType.NSellingCrate) // from StorageChest OR SellingCrate, send to PersonalInventory
         {

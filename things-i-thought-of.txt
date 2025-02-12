@@ -12,7 +12,7 @@ later add full name, character image
 give the background an image (aesth)
 
 box: 
-omg need stacking :O 
+omg need stacking :OOOOOO
 ids for item order and button to reorder
 
 create actual consquence for running out of energy (possibly new screen)
@@ -32,3 +32,14 @@ is it fine that statusscript dragged dialoguesystem and vice versa? IS OK
 default pivot to Sprite Editor > bottom center, Inspector > Sprite Renderer > sprite sort point to bottom center
 help me make things glow if they are noticed by PInteractCollider? 
 font background transparent not
+
+--
+
+2.11.26 pausing this project for a bit
+notes from browser: 
+"How to create Progress Bars in Unity" from Game Dev Guide https://www.youtube.com/watch?app=desktop&v=J1ng1zA3-Pk
+AllInOneSpriteShader "First Steps (Must Read)
+" https://seasidestudios.gitbook.io/seaside-studios/sprite-shader/first-steps-must-read
+F6CE6C
+FAF2DD
+.65

@@ -280,6 +280,11 @@ public class StatusController : MonoBehaviour
 
             // UI
             displayInventoryUI.gameObject.SetActive(false);
+
+            // TODO: amy write code here?
+            // public List of <GameObjects> actualDisplayCabinets -> maybe in StatusController?
+            // loop: actualDisplayCabinet.UpdateSprites() 
+            // which will check AInventoryData based on key, and update :D -> maybe in ChestInfo?
         }
         else if (bigStatus == BigStatus.InWorld && littleStatus == LittleStatus.SellingCrate_InWorld)
         {
